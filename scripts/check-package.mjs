@@ -65,11 +65,7 @@ function checkSchemas() {
     const path = require.resolve(`@mkaya13/stellar-dustin/schemas/${name}`);
     const schema = JSON.parse(readFileSync(path, "utf8"));
     assert.equal(schema.$schema, "https://json-schema.org/draft/2020-12/schema", name);
-    assert.equal(
-      schema.$id,
-      `https://github.com/mkaya13/dustin/blob/main/schemas/${name}`,
-      name,
-    );
+    assert.equal(schema.$id, `https://github.com/mkaya13/dustin/blob/main/schemas/${name}`, name);
   }
 }
 
