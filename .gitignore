@@ -1,0 +1,44 @@
+# Local tooling (stellar-build skills repo, cloned separately)
+stellar-build/
+
+# Dependencies
+node_modules
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Logs and OS files
+*.log
+.DS_Store
+
+# Coverage
+coverage/
+
+# stellar-build project-local tooling config
+.stellar-build/
+
+# npm pack output
+*.tgz
+
+# Fixture keys written by the fixture builder (testnet only, never committed)
+.fixture/
+
+# Git worktrees of parallel coding agents (local tooling, never committed)
+.claude/worktrees/
+
+# Editor settings (local, never committed)
+.vscode/
+
+# The demo video: hosted as a release asset, never committed (evidence/demo/README.md)
+evidence/demo/*.mp4
+
+# The web demo's Playwright output (web/, story E5-S1); its dist/ and node_modules are covered above
+web/test-results/
+web/playwright-report/
