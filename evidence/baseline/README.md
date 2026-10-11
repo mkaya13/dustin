@@ -6,24 +6,26 @@ SOW Deliverable 3 asks for a recorded baseline run of the existing tool (Stellar
 
 | Field | Value |
 |---|---|
-| Fixture id | `messy-20260926T035942Z` |
-| Fixture account | `GAZF3X7YYCI7PHZYZDQOGPLVN2RVD37YIQG7YEY6QJW6IK224Y4R3MBK` |
-| Destination | `GBQGFM635UIV2BTCTYSMKKJBESY47VXZLCIPGKW3GZJSSY6B45U2DH2C` |
-| Explorer | https://stellar.expert/explorer/testnet/account/GAZF3X7YYCI7PHZYZDQOGPLVN2RVD37YIQG7YEY6QJW6IK224Y4R3MBK |
-| Public manifest | `test/fixtures/horizon/messy/manifest.json` |
-| State | balance 4.0000000 XLM = minimum balance, spendable 0; 4 trustlines with dust (1 sponsored), 2 open offers, 1 data entry |
+| Fixture id | `messy-20261011T142222Z-3d11c6` |
+| Fixture account | `GBAFBJOQ6ITXALBTERTORGEFKQTHBYU4DPYJYLKZVXGN2622BKQWUF3D` |
+| Destination | `GAL6DG3L5RFP5JIGQMGGRGWYDW24I2N3YDVFHBACEAXBJRFCLO67PEKK` |
+| Explorer | https://stellar.expert/explorer/testnet/account/GBAFBJOQ6ITXALBTERTORGEFKQTHBYU4DPYJYLKZVXGN2622BKQWUF3D |
+| Recipe | the baseline recipe, recipe hash `a00bfd18c386d2f536daf544513ee7153c433f62a68437bc3a0af11bdc4ddd9b`, as in the public manifest `test/fixtures/horizon/messy/manifest.json` |
+| State | balance 4.0000000 XLM = minimum balance, spendable 0; 4 trustlines with dust (1 sponsored), 2 open offers, 1 data entry (`verify-before.json`, 2026-10-11) |
+
+Rebuilt on 2026-10-11 from Friendbot with the same recipe: the keys of the first baseline fixture, `messy-20260926T035942Z` (account `GAZF3X7YYCI7PHZYZDQOGPLVN2RVD37YIQG7YEY6QJW6IK224Y4R3MBK`), are not in the working copy the recording is made from. Its public manifest stays the source of the recipe hash that B-03 checks.
 
 ## Recording protocol
 
 1. Build the CLI: `npm run build`.
 2. Snapshot the fixture before the run:
-   `node dist/cli/main.js fixture verify .fixture/messy-20260926T035942Z/manifest.json --snapshot evidence/baseline/verify-before.json`
+   `node dist/cli/main.js fixture verify .fixture/messy-20261011T142222Z-3d11c6/manifest.json --snapshot evidence/baseline/verify-before.json`
    Every check must pass.
 3. Start the screen recording (terminal prompt reduced to `$ `, no personal names, paths or other tabs visible).
-4. Open https://stellar.expert/demolisher/testnet in a clean browser profile. Paste the fixture's secret key (the `fixture` entry in `.fixture/messy-20260926T035942Z/keys.json`; testnet only) and the destination above. Start the tool and keep recording until it stops. Record the exact message it shows.
-5. Stop the recording. Save it as `evidence/baseline/demolisher-2026-09-26.mp4` (or keep it outside git and put the link below if it is too large) and a still frame of the stopping point as `evidence/baseline/demolisher-stop.png`.
+4. Open https://stellar.expert/demolisher/testnet in a clean browser profile. Paste the fixture's secret key (the `fixture` entry in `.fixture/messy-20261011T142222Z-3d11c6/keys.json`; testnet only) and the destination above. Start the tool and keep recording until it stops. Record the exact message it shows.
+5. Stop the recording. Save it as `evidence/baseline/demolisher-2026-10-11.mp4` (or keep it outside git and put the link below if it is too large) and a still frame of the stopping point as `evidence/baseline/demolisher-stop.png`.
 6. Snapshot the fixture after the run:
-   `node dist/cli/main.js fixture verify .fixture/messy-20260926T035942Z/manifest.json --snapshot evidence/baseline/verify-after.json`
+   `node dist/cli/main.js fixture verify .fixture/messy-20261011T142222Z-3d11c6/manifest.json --snapshot evidence/baseline/verify-after.json`
    Every check must still pass, which proves Dustin later closes the same, unchanged account.
 
 ## B-02: the same recipe plus 1 XLM
@@ -34,7 +36,7 @@ Matrix row B-02 records the existing tool on the baseline recipe with 1 XLM the 
 2. Record the existing tool on that account exactly as in steps 3 to 5 above, and save the recording as `evidence/baseline/demolisher-b02.mp4` (or its link) with a still of where it stops.
 3. Fill the B-02 lines of the result below, with every transaction hash the tool produced.
 
-Prepared on 2026-09-29 by `--prepare-b02`, ready for the recording (or prepare a fresh one): fixture `messy-20260929T185626Z-60a26c`, account `GCT4MKGXIAT246OV246CVYXIZYT3FLXVOBIQ5BQ4Q5CQPKZGD7JBX4MM` (5.0000000 XLM, 1 XLM of it spendable), destination `GBWWAI5TUITATE6PEAPKXQK6Y2WI6B7BPGZ27QSSE2M3LBWOXQGDVDWK`, the 1 XLM paid by its fee sponsor in [`568ebca6787e8f82e52cd06f9650875cfa1b66fd31072ad59ab70d5a2f5612a5`](https://stellar.expert/explorer/testnet/tx/568ebca6787e8f82e52cd06f9650875cfa1b66fd31072ad59ab70d5a2f5612a5) (ledger 4936930); its checks before the 1 XLM: [`b02-verify-before-the-1-xlm.json`](b02-verify-before-the-1-xlm.json) (12 of 12 passed). Its secret key is the `fixture` entry of `.fixture/messy-20260929T185626Z-60a26c/keys.json` on the machine that prepared it.
+Prepared on 2026-10-11 by `--prepare-b02`, ready for the recording: fixture `messy-20261011T142354Z-f796e3`, account `GA7BSNFNFMD2FB4FXLTXHVFMW6ZGO46PNVDGFSHMD6MCZ4U5AHRCNHZ3` (5.0000000 XLM, 1 XLM of it spendable), destination `GCB4FEJS4DZTOBAVGLJILPWVSYBQ7ZZZ4BE3WDPAL2OCEXPROEBZZ5E5`, the 1 XLM paid by its fee sponsor in [`9b05a212c33b07574ce847d75016270fe7d47103186ad632b4fe6f0fb90ceec7`](https://stellar.expert/explorer/testnet/tx/9b05a212c33b07574ce847d75016270fe7d47103186ad632b4fe6f0fb90ceec7) (ledger 5141024); its checks before the 1 XLM: [`b02-verify-before-the-1-xlm.json`](b02-verify-before-the-1-xlm.json). The account prepared on 2026-09-29 (`GCT4MKGXIAT246OV246CVYXIZYT3FLXVOBIQ5BQ4Q5CQPKZGD7JBX4MM`) is not used: its keys are not in this working copy.
 
 ## B-03: Dustin on the same recipe, after both recordings
 
