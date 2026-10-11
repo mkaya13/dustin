@@ -1,0 +1,103 @@
+import { MIN_BASE_FEE } from "../config/fees.js";
+import { MAX_PAUSE_MS, MIN_PAUSE_MS, isPause } from "../config/pauses.js";
+import { DustinError } from "../errors/dustin-error.js";
+import { isAbortSignal } from "./abort.js";
+
+/**
+ * The longest validity window of an inner transaction, in seconds: one hour. An envelope whose
+ * outcome is not known is waited for until a ledger closes past its time bound, so a window without
+ * a limit would make that wait endless in effect (review round 3, R3-18); the default is 120 s.
+ */
+export const MAX_TIMEOUT_SECONDS = 3600;
+
+/**
+ * The longest final check after a merge, in milliseconds: one hour (the default is 30 s). Like the
+ * grace and the ledger wait, which extend the same waits as the validity window and are bounded by
+ * `MAX_TIMEOUT_SECONDS`, a longer one would make the wait endless in effect (closing review CX-9).
+ */
+export const MAX_VERIFY_TIMEOUT_MS = 60 * 60 * 1000;
+
+/** The numeric execute options, as `validateExecuteOptions` reads them. */
+export interface NumericExecuteOptions {
+  maxAttemptsPerTransaction?: number;
+  maxReplans?: number;
+  maxRateLimitRetries?: number;
+  pollIntervalMs?: number;
+  backoffMs?: number;
+  verifyTimeoutMs?: number;
+  graceSeconds?: number;
+  ledgerWaitSeconds?: number;
+  timeoutSeconds?: number;
+  budgetStroops?: number;
+  maxBaseFeeStroops?: number;
+}
+
+type Rule = { test: (n: number) => boolean; expected: string };
+
+const count = (least: number): Rule => ({
+  test: (n) => Number.isSafeInteger(n) && n >= least,
+  expected: `a whole number of at least ${least}`,
+});
+const between = (least: number, most: number): Rule => ({
+  test: (n) => Number.isSafeInteger(n) && n >= least && n <= most,
+  expected: `a whole number from ${least} to ${most}`,
+});
+// A bound (how long to keep trying) may be 0, meaning "look once", and has a ceiling: the grace
+// and the ledger wait extend the wait for an unconfirmed envelope (maxWaitSeconds is the window
+// plus twice both), so without one they would make it endless in effect, as an unbounded window
+// would (closing review CX-9; review round 3, R3-18).
+const duration = (most: number): Rule => ({
+  test: (n) => Number.isFinite(n) && n >= 0 && n <= most,
+  expected: `a finite number from 0 to ${most}`,
+});
+// A pause (the time slept between two requests to Horizon) is at least 200 ms and never 0, so no
+// caller can make the executor poll Horizon in a tight loop (src/config/pauses.ts). Tests skip real
+// waiting by injecting `sleep`, never by passing 0. It is at most Node's timer limit, beyond which
+// a timer fires at once (review round 3, R3-18).
+const pause: Rule = {
+  test: isPause,
+  expected: `a pause of ${MIN_PAUSE_MS} to ${MAX_PAUSE_MS} ms (inject \`sleep\` to skip waiting)`,
+};
+
+const RULES: Record<keyof NumericExecuteOptions, Rule> = {
+  maxAttemptsPerTransaction: count(1),
+  maxReplans: count(0),
+  maxRateLimitRetries: count(0),
+  pollIntervalMs: pause,
+  backoffMs: pause,
+  verifyTimeoutMs: duration(MAX_VERIFY_TIMEOUT_MS),
+  graceSeconds: duration(MAX_TIMEOUT_SECONDS),
+  ledgerWaitSeconds: duration(MAX_TIMEOUT_SECONDS),
+  timeoutSeconds: between(1, MAX_TIMEOUT_SECONDS),
+  budgetStroops: count(1),
+  maxBaseFeeStroops: count(MIN_BASE_FEE),
+};
+
+/**
+ * Refuses a numeric execute option that would unbind a limit or a wait, before anything is read or
+ * signed (edge case E11): `attempt > NaN` never holds, so a NaN limit would rebuild without end.
+ * A `signal` must be an AbortSignal (review finding CL-1): an object without `aborted` would read
+ * as never aborted, so a caller's cancellation would be lost without a word.
+ */
+export function validateExecuteOptions(
+  options: NumericExecuteOptions & { signal?: unknown },
+): void {
+  if (options.signal !== undefined && !isAbortSignal(options.signal)) {
+    throw new DustinError(
+      "CONFIG_INVALID",
+      "Invalid execute option: signal must be an AbortSignal (from an AbortController).",
+      { stage: "config" },
+    );
+  }
+  for (const [name, rule] of Object.entries(RULES) as Array<[keyof NumericExecuteOptions, Rule]>) {
+    const value = options[name];
+    if (value === undefined) continue;
+    if (typeof value !== "number" || !rule.test(value)) {
+      throw new DustinError(
+        "CONFIG_INVALID",
+        `Invalid execute option: ${name} must be ${rule.expected}; got ${String(value)}.`,
+        { stage: "config" },
+      );
+    }
+  }
+}
