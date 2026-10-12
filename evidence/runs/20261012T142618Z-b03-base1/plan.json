@@ -1,0 +1,576 @@
+{
+  "schemaVersion": 1,
+  "kind": "dustin-close-plan",
+  "network": {
+    "passphrase": "Test SDF Network ; September 2015",
+    "horizon": "https://horizon-testnet.stellar.org"
+  },
+  "account": "GBLXGTTPY2ZU64A53ZCANIX7ZFLXMHI6KSGRCPKSY5ORZAFEHUU3YMOK",
+  "destination": "GBR3YSAJB5V75OA377G54DABNPO65I5IUHUW24C7QFFDOD2DDER42UJQ",
+  "feeSponsor": "GCBW3VNCN7IYREOZIJ7LFC5TCRK3O6E4K7TK3WGY2KK6AARIOYFC6O6I",
+  "memo": null,
+  "options": {
+    "slippageBps": 100,
+    "maxOpsPerTransaction": 100,
+    "maxWaitLedgers": 120
+  },
+  "observed": {
+    "ledger": 5158335,
+    "closedAt": "2026-10-12T14:27:42Z"
+  },
+  "reserve": {
+    "balance": "4.0000000",
+    "baseReserve": "0.5000000",
+    "minimum": "4.0000000",
+    "spendable": "0.0000000"
+  },
+  "snapshotHash": "441f1f1b826d927441eaa4aad551a04b3252d79f41228d919de3edbd122a4631",
+  "ladderOrder": "sow",
+  "status": "closable",
+  "steps": [
+    {
+      "id": "S01",
+      "kind": "cancel_offer",
+      "txIndex": 0,
+      "subject": {
+        "type": "offer",
+        "offerId": "912364",
+        "selling": {
+          "type": "credit_alphanum12",
+          "code": "DUSTA",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "buying": {
+          "type": "native"
+        },
+        "amount": "0.0000002"
+      },
+      "reason": "Open offer 912364 sells 0.0000002 DUSTA for XLM. Offers are subentries that block the merge, and their liabilities stop the balance from moving and the trustline from being removed; it is cancelled with amount 0.",
+      "threshold": "medium",
+      "operation": {
+        "type": "manageSellOffer",
+        "offerId": "912364",
+        "selling": {
+          "type": "credit_alphanum12",
+          "code": "DUSTA",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "buying": {
+          "type": "native"
+        },
+        "amount": "0",
+        "price": {
+          "n": 100,
+          "d": 1
+        }
+      },
+      "feeEstimateStroops": 32157,
+      "dependsOn": []
+    },
+    {
+      "id": "S02",
+      "kind": "cancel_offer",
+      "txIndex": 0,
+      "subject": {
+        "type": "offer",
+        "offerId": "912365",
+        "selling": {
+          "type": "credit_alphanum12",
+          "code": "DUSTC",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "buying": {
+          "type": "credit_alphanum12",
+          "code": "DUSTB",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "amount": "0.0000002"
+      },
+      "reason": "Open offer 912365 sells 0.0000002 DUSTC for DUSTB. Offers are subentries that block the merge, and their liabilities stop the balance from moving and the trustline from being removed; it is cancelled with amount 0.",
+      "threshold": "medium",
+      "operation": {
+        "type": "manageSellOffer",
+        "offerId": "912365",
+        "selling": {
+          "type": "credit_alphanum12",
+          "code": "DUSTC",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "buying": {
+          "type": "credit_alphanum12",
+          "code": "DUSTB",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "amount": "0",
+        "price": {
+          "n": 1,
+          "d": 1
+        }
+      },
+      "feeEstimateStroops": 32157,
+      "dependsOn": []
+    },
+    {
+      "id": "S03",
+      "kind": "dispose_balance",
+      "txIndex": 0,
+      "subject": {
+        "type": "trustline",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTB",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "balance": "0.0000003",
+        "sponsor": null
+      },
+      "threshold": "medium",
+      "disposal": {
+        "rung": "return_to_issuer",
+        "amount": "0.0000003",
+        "to": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM",
+        "fallbackRungs": [],
+        "ruledOut": [
+          {
+            "rung": "path_payment",
+            "reason": "Horizon found no strict-send path to XLM for the full balance"
+          },
+          {
+            "rung": "send_to_destination",
+            "reason": "the destination holds no DUSTB trustline"
+          }
+        ]
+      },
+      "feeEstimateStroops": 32157,
+      "reason": "Horizon found no strict-send path to XLM for the full balance. Pay the 0.0000003 DUSTB back to its issuer GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM, which burns it.",
+      "operation": {
+        "type": "payment",
+        "destination": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTB",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "amount": "0.0000003"
+      },
+      "dependsOn": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "id": "S04",
+      "kind": "remove_trustline",
+      "txIndex": 0,
+      "subject": {
+        "type": "trustline",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTB",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "balance": "0.0000003",
+        "sponsor": null
+      },
+      "reason": "The DUSTB trustline is empty once the balance is disposed of; a trustline is a subentry that blocks the merge. Removing it (limit 0) releases its 0.5 XLM reserve to this account.",
+      "threshold": "medium",
+      "operation": {
+        "type": "changeTrust",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTB",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "limit": "0"
+      },
+      "reserveReleasedTo": {
+        "to": "account"
+      },
+      "feeEstimateStroops": 32157,
+      "dependsOn": [
+        "S03",
+        "S02"
+      ]
+    },
+    {
+      "id": "S05",
+      "kind": "dispose_balance",
+      "txIndex": 0,
+      "subject": {
+        "type": "trustline",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTC",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "balance": "0.0000005",
+        "sponsor": null
+      },
+      "threshold": "medium",
+      "disposal": {
+        "rung": "return_to_issuer",
+        "amount": "0.0000005",
+        "to": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM",
+        "fallbackRungs": [
+          "send_to_destination"
+        ],
+        "ruledOut": [
+          {
+            "rung": "path_payment",
+            "reason": "Horizon found no strict-send path to XLM for the full balance"
+          }
+        ]
+      },
+      "feeEstimateStroops": 32157,
+      "reason": "Horizon found no strict-send path to XLM for the full balance. Pay the 0.0000005 DUSTC back to its issuer GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM, which burns it.",
+      "operation": {
+        "type": "payment",
+        "destination": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTC",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "amount": "0.0000005"
+      },
+      "dependsOn": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "id": "S06",
+      "kind": "remove_trustline",
+      "txIndex": 0,
+      "subject": {
+        "type": "trustline",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTC",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "balance": "0.0000005",
+        "sponsor": null
+      },
+      "reason": "The DUSTC trustline is empty once the balance is disposed of; a trustline is a subentry that blocks the merge. Removing it (limit 0) releases its 0.5 XLM reserve to this account.",
+      "threshold": "medium",
+      "operation": {
+        "type": "changeTrust",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTC",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "limit": "0"
+      },
+      "reserveReleasedTo": {
+        "to": "account"
+      },
+      "feeEstimateStroops": 32157,
+      "dependsOn": [
+        "S05",
+        "S02"
+      ]
+    },
+    {
+      "id": "S07",
+      "kind": "dispose_balance",
+      "txIndex": 0,
+      "subject": {
+        "type": "trustline",
+        "asset": {
+          "type": "credit_alphanum4",
+          "code": "SPTA",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "balance": "0.0000001",
+        "sponsor": "GCO735NK5RUZWH25A3CKBROJOUPXKJPTQDXRJA7SWP5INVGCGMZWSBP4"
+      },
+      "threshold": "medium",
+      "disposal": {
+        "rung": "return_to_issuer",
+        "amount": "0.0000001",
+        "to": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM",
+        "fallbackRungs": [],
+        "ruledOut": [
+          {
+            "rung": "path_payment",
+            "reason": "Horizon found no strict-send path to XLM for the full balance"
+          },
+          {
+            "rung": "send_to_destination",
+            "reason": "the destination holds no SPTA trustline"
+          }
+        ]
+      },
+      "feeEstimateStroops": 32157,
+      "reason": "Horizon found no strict-send path to XLM for the full balance. Pay the 0.0000001 SPTA back to its issuer GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM, which burns it.",
+      "operation": {
+        "type": "payment",
+        "destination": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM",
+        "asset": {
+          "type": "credit_alphanum4",
+          "code": "SPTA",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "amount": "0.0000001"
+      },
+      "dependsOn": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "id": "S08",
+      "kind": "remove_trustline",
+      "txIndex": 0,
+      "subject": {
+        "type": "trustline",
+        "asset": {
+          "type": "credit_alphanum4",
+          "code": "SPTA",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "balance": "0.0000001",
+        "sponsor": "GCO735NK5RUZWH25A3CKBROJOUPXKJPTQDXRJA7SWP5INVGCGMZWSBP4"
+      },
+      "reason": "The SPTA trustline is empty once the balance is disposed of; a trustline is a subentry that blocks the merge. Removing it (limit 0) needs only this account's signature and returns its 0.5 XLM reserve to the reserve sponsor GCO735NK5RUZWH25A3CKBROJOUPXKJPTQDXRJA7SWP5INVGCGMZWSBP4, not to this account.",
+      "threshold": "medium",
+      "operation": {
+        "type": "changeTrust",
+        "asset": {
+          "type": "credit_alphanum4",
+          "code": "SPTA",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "limit": "0"
+      },
+      "reserveReleasedTo": {
+        "to": "sponsor",
+        "sponsor": "GCO735NK5RUZWH25A3CKBROJOUPXKJPTQDXRJA7SWP5INVGCGMZWSBP4"
+      },
+      "feeEstimateStroops": 32157,
+      "dependsOn": [
+        "S07"
+      ]
+    },
+    {
+      "id": "S09",
+      "kind": "remove_data",
+      "txIndex": 0,
+      "subject": {
+        "type": "data",
+        "name": "dustin.fixture"
+      },
+      "reason": "Data entry \"dustin.fixture\" is a subentry that blocks the merge; a manage-data operation without a value deletes it.",
+      "threshold": "medium",
+      "operation": {
+        "type": "manageData",
+        "name": "dustin.fixture",
+        "value": null
+      },
+      "feeEstimateStroops": 32157,
+      "dependsOn": []
+    },
+    {
+      "id": "S10",
+      "kind": "dispose_balance",
+      "txIndex": 1,
+      "subject": {
+        "type": "trustline",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTA",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "balance": "0.0000007",
+        "sponsor": null
+      },
+      "threshold": "medium",
+      "disposal": {
+        "rung": "path_payment",
+        "amount": "0.0000007",
+        "to": "GBLXGTTPY2ZU64A53ZCANIX7ZFLXMHI6KSGRCPKSY5ORZAFEHUU3YMOK",
+        "quotedXlm": "0.0000007",
+        "destMinXlm": "0.0000006",
+        "fallbackRungs": [
+          "return_to_issuer"
+        ],
+        "ruledOut": [
+          {
+            "rung": "send_to_destination",
+            "reason": "the destination holds no DUSTA trustline"
+          }
+        ]
+      },
+      "feeEstimateStroops": 32157,
+      "reason": "Sell the full 0.0000007 DUSTA for about 0.0000007 XLM (at least 0.0000006) with a strict-send path payment to this account; the XLM leaves with the merge. It runs in its own transaction so a moved market cannot roll back the rest.",
+      "operation": {
+        "type": "pathPaymentStrictSend",
+        "sendAsset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTA",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "sendAmount": "0.0000007",
+        "destination": "GBLXGTTPY2ZU64A53ZCANIX7ZFLXMHI6KSGRCPKSY5ORZAFEHUU3YMOK",
+        "destAsset": {
+          "type": "native"
+        },
+        "destMin": "0.0000006",
+        "path": []
+      },
+      "dependsOn": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "id": "S11",
+      "kind": "remove_trustline",
+      "txIndex": 1,
+      "subject": {
+        "type": "trustline",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTA",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "balance": "0.0000007",
+        "sponsor": null
+      },
+      "reason": "The DUSTA trustline is empty once the balance is disposed of; a trustline is a subentry that blocks the merge. Removing it (limit 0) releases its 0.5 XLM reserve to this account.",
+      "threshold": "medium",
+      "operation": {
+        "type": "changeTrust",
+        "asset": {
+          "type": "credit_alphanum12",
+          "code": "DUSTA",
+          "issuer": "GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        },
+        "limit": "0"
+      },
+      "reserveReleasedTo": {
+        "to": "account"
+      },
+      "feeEstimateStroops": 32157,
+      "dependsOn": [
+        "S10",
+        "S01"
+      ]
+    },
+    {
+      "id": "S12",
+      "kind": "merge",
+      "txIndex": 2,
+      "subject": {
+        "type": "account",
+        "destination": "GBR3YSAJB5V75OA377G54DABNPO65I5IUHUW24C7QFFDOD2DDER42UJQ"
+      },
+      "reason": "Every subentry is removed by the earlier steps; the account sponsors nothing, is not immutable and the destination exists. The merge sends the whole XLM balance to GBR3YSAJB5V75OA377G54DABNPO65I5IUHUW24C7QFFDOD2DDER42UJQ and deletes the account. It cannot be undone.",
+      "threshold": "high",
+      "operation": {
+        "type": "accountMerge",
+        "destination": "GBR3YSAJB5V75OA377G54DABNPO65I5IUHUW24C7QFFDOD2DDER42UJQ"
+      },
+      "feeEstimateStroops": 32157,
+      "dependsOn": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11"
+      ]
+    }
+  ],
+  "transactions": [
+    {
+      "index": 0,
+      "phase": "cleanup",
+      "stepIds": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09"
+      ],
+      "opCount": 9,
+      "innerFeeStroops": 0,
+      "feeBumpFeeStroops": 321570,
+      "reason": "Deterministic cleanup with no market dependency (offer cancellations, returns to issuers, transfers to the destination, removal of emptied trustlines and data entries), grouped into one fee-bumped transaction of at most 100 operations."
+    },
+    {
+      "index": 1,
+      "phase": "convert",
+      "stepIds": [
+        "S10",
+        "S11"
+      ],
+      "opCount": 2,
+      "innerFeeStroops": 0,
+      "feeBumpFeeStroops": 96471,
+      "reason": "Market-dependent sale of DUSTA isolated with its trustline removal, so a moved market cannot roll back the rest of the close."
+    },
+    {
+      "index": 2,
+      "phase": "merge",
+      "stepIds": [
+        "S12"
+      ],
+      "opCount": 1,
+      "innerFeeStroops": 0,
+      "feeBumpFeeStroops": 64314,
+      "reason": "The merge runs alone after a fresh preflight, because the path payments before it depend on the market and could change the plan."
+    }
+  ],
+  "unclosable": [],
+  "blockers": [],
+  "warnings": [],
+  "recovery": {
+    "xlmToDestination": "4.0000007",
+    "nativeBalance": "4.0000000",
+    "quotedProceedsXlm": "0.0000007",
+    "reservesReturnedToSponsors": [
+      {
+        "sponsor": "GCO735NK5RUZWH25A3CKBROJOUPXKJPTQDXRJA7SWP5INVGCGMZWSBP4",
+        "xlm": "0.5000000",
+        "entries": [
+          "trustline SPTA:GC5YET2PKQP7WCEQWOP4ASBJHW3I5JN2KUMWOVQMUGPL2Q6UX44PW3EM"
+        ]
+      }
+    ],
+    "feesPaidByAccount": "0"
+  },
+  "fees": {
+    "baseFeeStroops": 32157,
+    "basis": "fee_stats",
+    "maxBaseFeeStroops": 1000000,
+    "perTransactionStroops": [
+      321570,
+      96471,
+      64314
+    ],
+    "totalStroops": 482355,
+    "budgetStroops": 50000000,
+    "withinBudget": true,
+    "payer": "GCBW3VNCN7IYREOZIJ7LFC5TCRK3O6E4K7TK3WGY2KK6AARIOYFC6O6I"
+  },
+  "sequenceGuard": {
+    "sequenceAtMerge": "22154841472106503",
+    "earliestLedger": 5158336,
+    "ok": true,
+    "unblocksAtLedger": null,
+    "etaSeconds": null
+  },
+  "planHash": "b9e605ac8eeca18663f9873a465e0f044d140416c97d9d9ffd878b89d1f06065"
+}

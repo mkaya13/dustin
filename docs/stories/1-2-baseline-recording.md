@@ -1,6 +1,6 @@
 # Story 1.2: Record the baseline run of the existing tool
 
-Status: in-progress
+Status: done
 
 ## Story
 
@@ -18,8 +18,8 @@ so that the gap Dustin closes is something I can watch rather than take on trust
 ## Tasks / Subtasks
 
 - [x] Task 1: recording protocol and fixture details in `evidence/baseline/README.md` (AC: 1, 3)
-- [ ] Task 2: `verify-before.json` snapshot, the recording and its still frame (AC: 1) — human action by the builder
-- [ ] Task 3: `verify-after.json` snapshot and the filled Result table (AC: 2, 4)
+- [x] Task 2: `verify-before.json` snapshot, the recording and its still frame (AC: 1) — recorded on 2026-10-12 by an automated browser at the builder's request
+- [x] Task 3: `verify-after.json` snapshot and the filled Result table (AC: 2, 4)
 
 ## Dev Notes
 
@@ -42,12 +42,15 @@ dev-story workflow (AI developer agent)
 ### Completion Notes List
 
 - 2026-09-26: protocol written; waiting for the builder's recording.
+- 2026-10-12: recorded. The keys of `messy-20260926T035942Z` are not in the working copy the recording was made from, so the fixture was rebuilt from Friendbot with the same recipe on 2026-10-11 (`messy-20261011T142222Z-3d11c6`, recipe hash `a00bfd18...dd9b`, `verify-before.json`), and B-02 used a second rebuild with 1 XLM spendable (`messy-20261011T142354Z-f796e3`). Both recordings were made on 2026-10-12 by an automated browser (Playwright, Chromium, a fresh profile) at the builder's request, driving StellarExpert's Account Demolisher (v1.0.2) as a person would, with the secret key field masked in the recording by a style rule. AC-1: `evidence/baseline/demolisher-2026-10-12.mp4`, its still `demolisher-stop.png` and a log of the page's status lines and posted requests; AC-2: the tool stopped at "Error: Failed to merge the account" 37 s in, after its first transaction (a `manage_data` removal paid by the account) was rejected five times with `tx_insufficient_balance`; nothing reached the ledger and every fixture item remained; AC-3: the README links the tool's URL, its MIT-licensed client source and states the expectation it confirms; AC-4: `verify-after.json`, every check passed. B-02: the tool closed the account in five transactions paid by the account, the merge co-signed by its server; B-03 followed (`evidence/baseline/b03-comparison.md`). The below-1-XLM co-sign refusal was not tested again: B-02 paid out 4.9998207 XLM.
 
 ### File List
 
-- `evidence/baseline/README.md` (new)
+- `evidence/baseline/README.md` (new; the Result filled on 2026-10-12)
+- `evidence/baseline/demolisher-2026-10-12.mp4`, `demolisher-stop.png`, `demolisher-2026-10-12-log.txt`, `demolisher-b02.mp4`, `demolisher-b02-stop.png`, `demolisher-b02-log.txt`, `verify-after.json` (new, 2026-10-12)
 - `docs/stories/1-2-baseline-recording.md` (new)
 
 ## Change Log
 
 - 2026-09-26: Recording protocol prepared. Status: in-progress (blocked on the builder's recording).
+- 2026-10-12: B-01 and B-02 recorded on rebuilds of the recipe, the Result filled, the fixture unchanged after B-01; B-03 run. Status: done.

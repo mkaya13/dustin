@@ -1,0 +1,68 @@
+[
+  {
+    "purpose": "Payment of 1 XLM from the fee sponsor to the account (matrix row B-02's \"plus 1 XLM\"), signed and paid by the sponsor",
+    "hash": "85ff149317ebfddaea9042f7c46d8e121ecd1db4568e38d9c7760c811075e73c",
+    "innerHash": null,
+    "result": "applied",
+    "ledger": 5158352,
+    "resultCodes": null,
+    "feeAccount": "GCAIICGDWXB5NKLSXGQNDFYXS4O7U7IHS6FKJQK3CNDG6VX5EQ25YGHP",
+    "source": "GCAIICGDWXB5NKLSXGQNDFYXS4O7U7IHS6FKJQK3CNDG6VX5EQ25YGHP",
+    "envelopeXdr": "AAAAAgAAAACAhAjDtcPWqXK5oNGXF5cd+n0Hl4qkwVsTRm9W/SQ13AAAv4oATrXHAAAAAgAAAAEAAAAAAAAAAAAAAABqzO8pAAAAAAAAAAEAAAAAAAAAAQAAAADmScC+LVIRtD3acluIjzjAKCDM7DaQYL3SqzwNIKRwiQAAAAAAAAAAAJiWgAAAAAAAAAAB/SQ13AAAAEDUnHCTw3HWAvxX4z15jj2itqTJHUIR9PAjZgOylwH8WX2d+bus9hWiIxtyrJn/SdfkMgrw2s6eskYhDBrlSNUN",
+    "horizon": {
+      "_links": {
+        "self": {
+          "href": "https://horizon-testnet.stellar.org/transactions/85ff149317ebfddaea9042f7c46d8e121ecd1db4568e38d9c7760c811075e73c"
+        },
+        "account": {
+          "href": "https://horizon-testnet.stellar.org/accounts/GCAIICGDWXB5NKLSXGQNDFYXS4O7U7IHS6FKJQK3CNDG6VX5EQ25YGHP"
+        },
+        "ledger": {
+          "href": "https://horizon-testnet.stellar.org/ledgers/5158352"
+        },
+        "operations": {
+          "href": "https://horizon-testnet.stellar.org/transactions/85ff149317ebfddaea9042f7c46d8e121ecd1db4568e38d9c7760c811075e73c/operations{?cursor,limit,order}",
+          "templated": true
+        },
+        "effects": {
+          "href": "https://horizon-testnet.stellar.org/transactions/85ff149317ebfddaea9042f7c46d8e121ecd1db4568e38d9c7760c811075e73c/effects{?cursor,limit,order}",
+          "templated": true
+        },
+        "precedes": {
+          "href": "https://horizon-testnet.stellar.org/transactions?order=asc&cursor=22154953141272576"
+        },
+        "succeeds": {
+          "href": "https://horizon-testnet.stellar.org/transactions?order=desc&cursor=22154953141272576"
+        },
+        "transaction": {
+          "href": "https://horizon-testnet.stellar.org/transactions/85ff149317ebfddaea9042f7c46d8e121ecd1db4568e38d9c7760c811075e73c"
+        }
+      },
+      "id": "85ff149317ebfddaea9042f7c46d8e121ecd1db4568e38d9c7760c811075e73c",
+      "paging_token": "22154953141272576",
+      "successful": true,
+      "hash": "85ff149317ebfddaea9042f7c46d8e121ecd1db4568e38d9c7760c811075e73c",
+      "ledger": 5158352,
+      "created_at": "2026-10-12T14:29:07Z",
+      "source_account": "GCAIICGDWXB5NKLSXGQNDFYXS4O7U7IHS6FKJQK3CNDG6VX5EQ25YGHP",
+      "source_account_sequence": "22154914486550530",
+      "fee_account": "GCAIICGDWXB5NKLSXGQNDFYXS4O7U7IHS6FKJQK3CNDG6VX5EQ25YGHP",
+      "fee_charged": "100",
+      "max_fee": "49034",
+      "operation_count": 1,
+      "envelope_xdr": "AAAAAgAAAACAhAjDtcPWqXK5oNGXF5cd+n0Hl4qkwVsTRm9W/SQ13AAAv4oATrXHAAAAAgAAAAEAAAAAAAAAAAAAAABqzO8pAAAAAAAAAAEAAAAAAAAAAQAAAADmScC+LVIRtD3acluIjzjAKCDM7DaQYL3SqzwNIKRwiQAAAAAAAAAAAJiWgAAAAAAAAAAB/SQ13AAAAEDUnHCTw3HWAvxX4z15jj2itqTJHUIR9PAjZgOylwH8WX2d+bus9hWiIxtyrJn/SdfkMgrw2s6eskYhDBrlSNUN",
+      "result_xdr": "AAAAAAAAAGQAAAAAAAAAAQAAAAAAAAABAAAAAAAAAAA=",
+      "fee_meta_xdr": "AAAAAgAAAAMATrXOAAAAAAAAAACAhAjDtcPWqXK5oNGXF5cd+n0Hl4qkwVsTRm9W/SQ13AAAABb4mBYQAE61xwAAAAEAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAADAAAAAABOtcgAAAAAaszuiwAAAAAAAAABAE610AAAAAAAAAAAgIQIw7XD1qlyuaDRlxeXHfp9B5eKpMFbE0ZvVv0kNdwAAAAW+JgVrABOtccAAAABAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAwAAAAAATrXIAAAAAGrM7osAAAAA",
+      "memo_type": "none",
+      "signatures": [
+        "1Jxwk8Nx1gL8V+M9eY49orakyR1CEfTwI2YDspcB/Fl9nfm7rPYVoiMbcqyZ/0nX5DIK8NrOnrJGIQwa5UjVDQ=="
+      ],
+      "preconditions": {
+        "timebounds": {
+          "min_time": "0",
+          "max_time": "1791815465"
+        }
+      }
+    }
+  }
+]

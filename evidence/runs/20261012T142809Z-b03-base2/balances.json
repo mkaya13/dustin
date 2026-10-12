@@ -1,0 +1,108 @@
+{
+  "ledgers": {
+    "before": 5158354,
+    "after": 5158359
+  },
+  "accounts": [
+    {
+      "role": "Account",
+      "account": "GDTETQF6FVJBDNB53JZFXCEPHDACQIGM5Q3JAYF52KVTYDJAURYITJ5L",
+      "before": {
+        "balance": "5.0000000",
+        "sequence": "22154918781517828",
+        "subentryCount": 7,
+        "numSponsoring": 0,
+        "numSponsored": 1,
+        "trustlines": [
+          {
+            "asset": "DUSTA:GC6YI5IZUGV5OI4JMANJ2XFDVXLZ6F7J2MJKFDUNDZETOTEIQGJCN4GE",
+            "balance": "0.0000007"
+          },
+          {
+            "asset": "DUSTB:GC6YI5IZUGV5OI4JMANJ2XFDVXLZ6F7J2MJKFDUNDZETOTEIQGJCN4GE",
+            "balance": "0.0000003"
+          },
+          {
+            "asset": "DUSTC:GC6YI5IZUGV5OI4JMANJ2XFDVXLZ6F7J2MJKFDUNDZETOTEIQGJCN4GE",
+            "balance": "0.0000005"
+          },
+          {
+            "asset": "SPTA:GC6YI5IZUGV5OI4JMANJ2XFDVXLZ6F7J2MJKFDUNDZETOTEIQGJCN4GE",
+            "balance": "0.0000001"
+          }
+        ]
+      },
+      "after": null
+    },
+    {
+      "role": "Destination",
+      "account": "GALTIQEVTVTKEOH3C5KLMX4XR5U7XOAWC6AZZFEQSDNI7NZYVB2SDUDL",
+      "before": {
+        "balance": "10.0000000",
+        "sequence": "22154918781517824",
+        "subentryCount": 1,
+        "numSponsoring": 0,
+        "numSponsored": 0,
+        "trustlines": [
+          {
+            "asset": "DUSTC:GC6YI5IZUGV5OI4JMANJ2XFDVXLZ6F7J2MJKFDUNDZETOTEIQGJCN4GE",
+            "balance": "0.0000000"
+          }
+        ]
+      },
+      "after": {
+        "balance": "15.0000007",
+        "sequence": "22154918781517824",
+        "subentryCount": 1,
+        "numSponsoring": 0,
+        "numSponsored": 0,
+        "trustlines": [
+          {
+            "asset": "DUSTC:GC6YI5IZUGV5OI4JMANJ2XFDVXLZ6F7J2MJKFDUNDZETOTEIQGJCN4GE",
+            "balance": "0.0000000"
+          }
+        ]
+      }
+    },
+    {
+      "role": "Reserve sponsor",
+      "account": "GDVDU7ZBQ3ORV5Q2JXOUKOOONEF4JGLO24XC4V7IXUE3BZQP533HMCLU",
+      "before": {
+        "balance": "10.0000000",
+        "sequence": "22154918781517824",
+        "subentryCount": 0,
+        "numSponsoring": 1,
+        "numSponsored": 0,
+        "trustlines": []
+      },
+      "after": {
+        "balance": "10.0000000",
+        "sequence": "22154918781517824",
+        "subentryCount": 0,
+        "numSponsoring": 0,
+        "numSponsored": 0,
+        "trustlines": []
+      }
+    },
+    {
+      "role": "Fee sponsor",
+      "account": "GCAIICGDWXB5NKLSXGQNDFYXS4O7U7IHS6FKJQK3CNDG6VX5EQ25YGHP",
+      "before": {
+        "balance": "9864.9997100",
+        "sequence": "22154914486550530",
+        "subentryCount": 0,
+        "numSponsoring": 0,
+        "numSponsored": 0,
+        "trustlines": []
+      },
+      "after": {
+        "balance": "9864.9995600",
+        "sequence": "22154914486550530",
+        "subentryCount": 0,
+        "numSponsoring": 0,
+        "numSponsored": 0,
+        "trustlines": []
+      }
+    }
+  ]
+}
