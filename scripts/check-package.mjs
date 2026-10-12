@@ -123,9 +123,9 @@ function checkTarball() {
   }
   // No source map may name the directory it was built in (0.1.0 did, in its three .cjs maps).
   for (const file of files.filter((f) => f.endsWith(".map"))) {
-    const { sources } = JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), "utf8"));
-    const absolute = sources.filter((s) => isAbsoluteSource(s));
-    assert.deepEqual(absolute, [], `absolute source path in ${file}`);
+    const map = JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), "utf8"));
+    const absolute = [...map.sources, map.file ?? ""].filter((s) => isAbsoluteSource(s));
+    assert.deepEqual(absolute, [], `absolute path in ${file}`);
   }
   return files;
 }

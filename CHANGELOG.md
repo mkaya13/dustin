@@ -6,7 +6,7 @@ All notable changes to `@mkaya13/stellar-dustin` are listed here. The format fol
 
 ### Fixed
 
-- The CommonJS source maps (`dist/index.cjs.map`, `dist/testing.cjs.map` and their shared chunk's) no longer name the directory the package was built in: tsup writes the generated file's absolute path as their first source, and `scripts/fix-sourcemaps.mjs`, run by `npm run build`, rewrites it relative to the map. The 0.1.0 tarball carries the absolute path in those three maps, so it was not byte-identical to a rebuild elsewhere; the package check (`scripts/check-package.mjs`) now fails on an absolute source path.
+- The CommonJS source maps (`dist/index.cjs.map`, `dist/testing.cjs.map` and their shared chunk's) no longer name the directory the package was built in: tsup writes the generated file's absolute path as their first source and as their `file`, and `scripts/fix-sourcemaps.mjs`, run by `npm run build`, rewrites both relative to the map. The 0.1.0 tarball carries the absolute path in those three maps, so it was not byte-identical to a rebuild elsewhere; the package check (`scripts/check-package.mjs`) now fails on an absolute path in a map.
 - The planner's property test (600 generated accounts, `test/unit/plan/properties.test.ts`) has a 30-second limit instead of the default 5 seconds: on a laptop running the whole offline tier in parallel it passed 5 seconds and stopped `npm publish` in `prepublishOnly`.
 
 ## [0.1.0] - 2026-10-12

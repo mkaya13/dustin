@@ -1,8 +1,8 @@
 // Runs after tsup (`npm run build`). tsup's CommonJS output names the generated file itself by its
-// absolute path as the first entry of `sources` in each .cjs map, so the published maps of 0.1.0
-// carried the directory they were built in and the tarball depended on where it was packed. This
-// rewrites every absolute source to a path relative to its map, which is what the other maps
-// already hold. `scripts/check-package.mjs` fails the package check if one is left.
+// absolute path as the first entry of `sources`, and as `file`, in each .cjs map, so the published
+// maps of 0.1.0 carried the directory they were built in and the tarball depended on where it was
+// packed. This rewrites every absolute path in `sources` and `file` relative to its map, which is
+// what the other maps already hold. `scripts/check-package.mjs` fails the package check if one is left.
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -22,12 +22,14 @@ let fixed = 0;
 for (const file of maps(DIST)) {
   const map = JSON.parse(readFileSync(file, "utf8"));
   let changed = false;
-  map.sources = map.sources.map((source) => {
-    if (!ABSOLUTE.test(source)) return source;
+  const relativize = (path) => {
+    if (typeof path !== "string" || !ABSOLUTE.test(path)) return path;
     changed = true;
-    const absolute = source.startsWith("file:") ? fileURLToPath(source) : source;
+    const absolute = path.startsWith("file:") ? fileURLToPath(path) : path;
     return relative(dirname(file), absolute).split(sep).join("/");
-  });
+  };
+  map.sources = map.sources.map(relativize);
+  if ("file" in map) map.file = relativize(map.file);
   if (changed) {
     writeFileSync(file, JSON.stringify(map));
     fixed += 1;
