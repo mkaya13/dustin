@@ -331,3 +331,35 @@ Traps recorded this session:
 Not done, by the builder's word: no deployment, no live URL.
 
 Next: the demo's next iterations as `docs/web-demo.md` lists them ("Roadmap"); the builder's actions of `docs/HANDOFF.md` are unchanged.
+
+## 2026-10-12 (post-sprint), the npm publish and the tag
+
+### Session summary (2026-10-10 to 2026-10-12)
+
+The public history of the repository was republished on 2026-10-10, so every Actions run cited before that date answers 404. This session records what was done on the republished history and fills the links of the release runbook's step 5 for the parts that are done; the GitHub release and the video are not.
+
+Done:
+
+- CI on the republished history: the workflows recreated; CI run 38148750380 (pull request #1, `a61b5b2`) green; CI run 38148904970 (push to `main`, `a2e3605`, 2026-10-11 14:51 to 14:53 UTC) green in the three offline jobs (Node 22.12.0, 22 and 24) and the web demo job; the manual testnet tier run 38149146295 (`main` at `a2e3605`, 2026-10-11 14:55 to 15:01 UTC, 6 m 9 s) passed 11 files and 58 tests.
+- The CI screenshot (E4-S3, PRD decision D-16): the builder captured the page of run 38149146295 on 2026-10-11 around 15:15 UTC, cropped to the page, as `evidence/tests/ci-run-38149146295.png`; it shows the status, the commit, the branch and the job summary ("Vitest Test Report", 11 and 58 passes), not the expanded test step. E4-S3 done.
+- The baseline fixtures rebuilt from Friendbot on 2026-10-11 with the same recipe, and the B-02 account prepared, ready for the recordings (`evidence/baseline/README.md`); the recordings themselves stay the builder's.
+- A demo take of 2026-10-11 produced (`evidence/demo/take-20261011T155017Z/`, not committed), not approved; `scripts/demo/take.exp` adjusted for the bracketed paste of bash 5.1 and later (not committed).
+- The npm publish: the builder published `@mkaya13/stellar-dustin` 0.1.0 on 2026-10-12 (registry time 13:23:49 UTC) from a clean checkout of `main` at `a2e3605` on Linux, with `npm publish --access public --ignore-scripts`, because under the full load of `prepublishOnly` the offline tier's `test/unit/plan/properties.test.ts` hit its 5 s timeout on the builder's machine (3.4 s alone); every gate had passed on the same commit in CI (run 38148904970). `gitHead` `a2e36054b7422d89da83b8c15875a0a08b27c917`, `dist.shasum` `ef67f43187904318fac0c8a793948509fbe1700c`. Checked: 26 files, an install into an empty project with `npx dustin --version` printing 0.1.0, `planClose` in the ESM import. E4-S4 done.
+- The tag: annotated `v0.1.0` (tag object `44338b9e0731b700c18afd9a112724bcd659599d`) on `a2e3605`, pushed on 2026-10-12.
+- The links (release runbook, step 5, for the publish, the tag and the screenshot): the README's status line, install section, D3, documentation and week-4 rows; `evidence/README.md`, `evidence/tests/README.md` and the completion report (the header with the tag, the full SHA and the npm URL, D1's source commit, D3's screenshot, D4's npm row, week 4); the CHANGELOG dated 2026-10-12 with its compare and tag links; stories 4-3 and 4-4 and the tracker. Every link to a run before 2026-10-10 that `npm run evidence:check` found answering 404 now names the run as plain text with that note, or points at the runs of 2026-10-11.
+
+Traps recorded this session:
+
+- **The build is not reproducible across directories.** The review of 2026-09-29 found two packs of one checkout identical; the published tarball differs from a rebuild of `a2e3605` in three source maps, `dist/index.cjs.map`, `dist/testing.cjs.map` and `dist/chunk-BP6VRGFM.cjs.map`, whose first `sources` entry is the absolute build directory (an artifact of the CommonJS build). Every other file, the code included, is identical. To be fixed in the next release.
+- **A property test can time out under load.** `test/unit/plan/properties.test.ts` takes 3.4 s alone and passed in CI, but exceeded its 5 s timeout when `prepublishOnly` ran the whole tier on a loaded machine.
+- **A republished history drops its Actions runs.** The run pages cited before 2026-10-10 answer 404; the logs kept in `evidence/tests/` are the record of the live tier's earlier runs.
+- **The 0.1.0 tarball holds the changes listed under `[Unreleased]`.** They were on `main` before `a2e3605`, so the CHANGELOG says so under 0.1.0.
+
+Blocked (the builder's actions, in order):
+
+1. The Demolisher recordings B-01 and B-02, then `node scripts/baseline-b03.mjs` (B-03).
+2. Watching and approving the video (E4-S6), then the GitHub release `v0.1.0` with it as an asset (release runbook, steps 3 and 4).
+3. The message to the chapter lead and the written acknowledgement.
+4. The completion report's hours, dates and next step, checked in a fresh browser and sent.
+
+Next: the builder's remaining actions; once the video is approved and hosted, the rest of step 5 (the video's links), then E4-S6, E4-S7, E1-S2 and Epic 4 close before 2026-10-22.

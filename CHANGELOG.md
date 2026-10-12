@@ -17,9 +17,9 @@ Post-sprint changes, outside the Instaward scope (`docs/README.md`, canonical de
 - The SEP-29 `config.memo_required` check decodes the data entry's base64 value exactly as `Buffer.from(value, "base64")` did, every character outside the alphabet skipped and decoding stopped at the first `=`; the first browser-safe version used `atob`, which throws on a stray character, so a malformed value would have read as "not required" (E5-S1 review, EC-1).
 - The SDK entry (`@mkaya13/stellar-dustin`) runs in a browser bundle: `sha256Hex` takes its digest from the Stellar SDK's `hash()` instead of `node:crypto`, and no module reachable from the entry uses `Buffer` or another Node-only API; `scripts/check-browser-safe.mjs` checks the built entry and its chunks in CI, parsing each file with the TypeScript compiler so that a string or a comment is never a finding and a bare `Buffer` or `process` value never escapes (E5-S1 review, S3). Every plan hash and snapshot hash is unchanged (`test/unit/canonical-json.test.ts`). The CLI and `@mkaya13/stellar-dustin/testing` keep Node's APIs.
 
-## [0.1.0] - unreleased
+## [0.1.0] - 2026-10-12
 
-Prepared on 2026-09-29 for the first npm publish, which is the builder's action. Testnet only. Built during the Stellar Instaward sprint of 2026-09-22 to 2026-10-22 against the accepted SOW (`SUCCESSFUL_SOW.md`); the SOW's success metric was met on 2026-09-28 (`evidence/README.md`).
+Published to npm on 2026-10-12 ([`@mkaya13/stellar-dustin` 0.1.0](https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0)) from commit `a2e3605`, tagged `v0.1.0`; prepared on 2026-09-29. That commit also holds the SDK changes listed under [Unreleased] above, so the published package includes them. Testnet only. Built during the Stellar Instaward sprint of 2026-09-22 to 2026-10-22 against the accepted SOW (`SUCCESSFUL_SOW.md`); the SOW's success metric was met on 2026-09-28 (`evidence/README.md`).
 
 ### Added
 
@@ -41,3 +41,5 @@ Prepared on 2026-09-29 for the first npm publish, which is the builder's action.
 - A secret-shaped argument is refused before the command line is parsed; every error, report and output line is redacted.
 - The sponsor signs only fee-bump envelopes, never an operation on the closed account's assets, and never beyond the per-close budget.
 
+[Unreleased]: https://github.com/mkaya13/dustin/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/mkaya13/dustin/releases/tag/v0.1.0

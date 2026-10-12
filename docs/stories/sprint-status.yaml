@@ -14,7 +14,7 @@
 # Budget by SOW deliverable: D1 60 h, D2 80 h, D3 40 h, D4 20 h (total 200 h).
 
 generated: "2026-09-25"
-last_updated: "2026-10-01"
+last_updated: "2026-10-12"
 project: dustin
 project_key: dustin
 tracking_system: file-system
@@ -58,8 +58,8 @@ development_status:
   epic-4: in-progress
   4-1-cli-output-polish: done
   4-2-error-handling-polish: done
-  4-3-test-evidence-reproducibility: review
-  4-4-npm-publish-readme-integration-notes: in-progress
+  4-3-test-evidence-reproducibility: done
+  4-4-npm-publish-readme-integration-notes: done
   4-5-write-up: done
   4-6-demo-video: review
   4-7-evidence-package: in-progress
@@ -314,7 +314,7 @@ stories:
     title: Test evidence and reproducibility
     epic: E4
     week: 4
-    status: review
+    status: done
     estimate_hours: 4
     deliverable: D3
   - key: 4-4-npm-publish-readme-integration-notes
@@ -322,7 +322,7 @@ stories:
     title: npm publish, README and integration notes
     epic: E4
     week: 4
-    status: in-progress
+    status: done
     estimate_hours: 6
     deliverable: D4
   - key: 4-5-write-up
@@ -503,3 +503,26 @@ sessions:
     next: >-
       The demo's next iterations as docs/web-demo.md lists them ("Roadmap"); the builder's actions of
       docs/HANDOFF.md as before.
+  - date: "2026-10-12"
+    sprint_day: post-sprint
+    summary: >-
+      The public history was republished on 2026-10-10, so the Actions runs cited before then answer 404;
+      the workflows were recreated on it and ran green on 2026-10-11: CI run 38148750380 (pull request #1,
+      a61b5b2) and run 38148904970 (main at a2e3605: the offline tier on Node 22.12.0, 22 and 24, the web
+      demo), and the testnet tier run 38149146295 (11 files, 58 tests, 6 m 9 s). The builder's screenshot of
+      that run page, evidence/tests/ci-run-38149146295.png (the job summary, not the expanded step); E4-S3
+      done. The baseline fixtures rebuilt on 2026-10-11 (evidence/baseline/README.md). A demo take of
+      2026-10-11 produced, not approved. @mkaya13/stellar-dustin 0.1.0 published to npm by the builder from
+      a2e3605 with --ignore-scripts (a property test's 5 s timeout under the full load of prepublishOnly; the
+      gates green in CI on that commit); the tarball differs from a rebuild only in three CommonJS source
+      maps that name the build directory, to be fixed in the next release. The tag v0.1.0 pushed; the links
+      of release runbook step 5 for the publish, the tag and the screenshot filled; old run links reworded.
+      E4-S4 done.
+    blocked_on_builder:
+      - the Demolisher recordings B-01 and B-02, then node scripts/baseline-b03.mjs (B-03)
+      - watching, approving and hosting the video (E4-S6); the GitHub release v0.1.0 with it as an asset
+      - the chapter lead's message and written acknowledgement (docs/runbooks/chapter-lead-message.md)
+      - the completion report's hours, dates and next step, then sending it
+    next: >-
+      The builder's remaining actions of docs/HANDOFF.md; the video's links once it is approved and hosted
+      (release runbook steps 3 to 5); then E4-S6, E4-S7, E1-S2 and Epic 4 close before 2026-10-22.

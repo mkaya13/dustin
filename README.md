@@ -6,7 +6,7 @@ Dustin closes messy Stellar testnet accounts: it cancels offers, disposes of lef
 
 The gap: the existing StellarExpert Account Demolisher sources and pays every transaction from the account being closed and has no fee-bump or sponsored-reserve handling ([client source](https://github.com/stellar-expert/stellar-expert-explorer/blob/master/business-logic/demolisher/demolisher-tx-builder.js)), so an account at its minimum reserve cannot even start. Other tools, and how Dustin differs from each, are in the [write-up](docs/write-up.md) (section 9, prior art).
 
-> **Status: version 0.1.0.** The package is `@mkaya13/stellar-dustin` (command `dustin`); the builder publishes 0.1.0 to npm, and if the registry does not list it yet (`npm view @mkaya13/stellar-dustin version`), install from source (below). Built during a 30-day Stellar Instaward sprint (2026-09-22 to 2026-10-22). The SOW's success metric was met on 2026-09-28 and recorded again on the 0.1.0 code on 2026-09-29: a zero-spendable messy account closed on testnet with every fee paid by a sponsor ([evidence package](evidence/README.md)). The 60-second video was produced on 2026-09-29 and again on 2026-09-30, with StellarExpert's pages, and waits for the builder's approval and hosting; the recording of the existing tool on the baseline fixture is the builder's. Testnet only.
+> **Status: version 0.1.0.** The package is `@mkaya13/stellar-dustin` (command `dustin`); 0.1.0 was published to npm on 2026-10-12 ([npm](https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0), `npm install @mkaya13/stellar-dustin`) from the commit tagged `v0.1.0`; installing from source (below) is the alternative. Built during a 30-day Stellar Instaward sprint (2026-09-22 to 2026-10-22). The SOW's success metric was met on 2026-09-28 and recorded again on the 0.1.0 code on 2026-09-29: a zero-spendable messy account closed on testnet with every fee paid by a sponsor ([evidence package](evidence/README.md)). The 60-second video was produced on 2026-09-29 and again on 2026-09-30, with StellarExpert's pages, and waits for the builder's approval and hosting; the recording of the existing tool on the baseline fixture is the builder's. Testnet only.
 
 ## Demo
 
@@ -29,11 +29,11 @@ Requires Node.js 22.12 or newer.
 From npm:
 
 ```bash
-npm install -g @mkaya13/stellar-dustin   # published by the builder as 0.1.0; puts `dustin` on your PATH
+npm install -g @mkaya13/stellar-dustin   # 0.1.0; puts `dustin` on your PATH
 npx @mkaya13/stellar-dustin --help       # or run it without installing
 ```
 
-If the registry does not have `@mkaya13/stellar-dustin` 0.1.0 yet, install from source:
+Or install from source:
 
 ```bash
 git clone https://github.com/mkaya13/dustin.git
@@ -91,7 +91,7 @@ Install the package and the Stellar JavaScript SDK it builds on. `@stellar/stell
 npm install @mkaya13/stellar-dustin @stellar/stellar-sdk@17.1.0
 ```
 
-If the registry does not have `@mkaya13/stellar-dustin` 0.1.0 yet, build a tarball from a clone with `npm pack` and install that instead ([integration notes](docs/integration-notes.md), section 1).
+To use the code of a clone instead of the registry's, build a tarball with `npm pack` and install that ([integration notes](docs/integration-notes.md), section 1).
 
 A read-only plan of any testnet account, with no secret (save as `plan.mjs` and run `node plan.mjs <account G...> <destination G...>`; it is valid TypeScript as well):
 
@@ -221,7 +221,7 @@ DUSTIN_TESTNET=1 npm run test:testnet -- --reporter=verbose   # live tier on tes
 ```
 
 - **Offline tier** (`npm test`): recorded Horizon JSON and a fake ledger, with the network blocked for the whole tier; it does not need a build first. The committed green run, on commit `e563470` (2026-09-30): 125 files, 1236 tests in 8.7 s ([`evidence/tests/offline.txt`](evidence/tests/offline.txt)); CI runs it on Node 22.12.0, 22 and 24 on every push.
-- **Live tier** (`DUSTIN_TESTNET=1 npm run test:testnet`): every file builds its own fixture accounts with fresh keys, so nothing is shared between runs and the builder's baseline fixture is never touched. The last run, on `main` at `e563470` in the [testnet CI job](https://github.com/mkaya13/dustin/actions/runs/36757533611) (2026-09-30): 11 files, 58 tests in 345 s, as on the 0.1.0 code (run 36560464977, 2026-09-29, 342 s); the complete logs of both are in `evidence/tests/` ([`testnet-ci-36757533611.txt`](evidence/tests/testnet-ci-36757533611.txt), [`testnet-ci-36560464977.txt`](evidence/tests/testnet-ci-36560464977.txt)), and a local green run of the same tier is [`evidence/tests/testnet.txt`](evidence/tests/testnet.txt) (2026-09-28, 301 s). `--reporter=verbose` shows every transaction hash the tests print.
+- **Live tier** (`DUSTIN_TESTNET=1 npm run test:testnet`): every file builds its own fixture accounts with fresh keys, so nothing is shared between runs and the builder's baseline fixture is never touched. The last run, on `main` at `a2e3605`, the commit of 0.1.0 as published, in the [testnet CI job, run 38149146295](https://github.com/mkaya13/dustin/actions/runs/38149146295) (2026-10-11, 6 m 9 s): 11 files, 58 tests, as on `e563470` (run 36757533611, 2026-09-30, 345 s) and on the code of 2026-09-29 (run 36560464977, 342 s), two runs of the history before its republication on 2026-10-10, whose pages no longer exist; the complete logs of those two are in `evidence/tests/` ([`testnet-ci-36757533611.txt`](evidence/tests/testnet-ci-36757533611.txt), [`testnet-ci-36560464977.txt`](evidence/tests/testnet-ci-36560464977.txt)), and a local green run of the same tier is [`evidence/tests/testnet.txt`](evidence/tests/testnet.txt) (2026-09-28, 301 s). `--reporter=verbose` shows every transaction hash the tests print.
 - **A fixture by hand**, then its check against SOW Appendix B. There is no `fixture:build` script; the fixture commands are part of the CLI:
 
 ```bash
@@ -242,8 +242,8 @@ The evidence follows SOW section 6.1; the [evidence package](evidence/README.md)
 |---|---|---|
 | D1 `planClose()` | Public repo + CLI output | The dry-run plan the 0.1.0 code printed for the metric account ([`plan.txt`](evidence/runs/20260929T111408Z-e4-cli/plan.txt)); the committed plan of the builder's baseline fixture of 2026-09-26 ([text](evidence/plan/fixture-plan.txt), [JSON](evidence/plan/fixture-plan.json)); `dustin plan` runs on any testnet account. |
 | D2 Live close on testnet | Transaction hashes (links) + 60-second video | The metric close on the 0.1.0 code of 2026-09-29 ([summary](evidence/runs/20260929T111408Z-e4-cli/summary.md)), and the first closes of 2026-09-28 through the [CLI](evidence/runs/20260928T112252Z-e3-cli/summary.md) and the [SDK](evidence/runs/20260928T112239Z-e3/summary.md): zero-spendable messy accounts, every transaction a sponsor-paid fee bump, the account gone (Horizon 404). The video: produced ([record](evidence/demo/README.md)); its link `<pending: builder approves and hosts the 60-second video (E4-S6)>`. |
-| D3 Edge cases and tests | Test results screenshot + public repo + baseline recording | The [test matrix](docs/test-matrix.md) and the tests under `test/`; the complete output and an image of a green run of each tier in [evidence/tests/](evidence/tests/README.md); the [baseline protocol](evidence/baseline/README.md). Pending: the Demolisher recording (`<pending: builder records the baseline, matrix B-01 and B-02>`). |
-| Documentation, demo and evidence | Public repo + write-up + 60-second video | The [write-up](docs/write-up.md), the [integration notes](docs/integration-notes.md) and the [evidence package](evidence/README.md), written; their stories stay open for the video's hosting, the npm publish and the baseline recording. The video is produced ([record](evidence/demo/README.md)) and waits for the builder's hosting. |
+| D3 Edge cases and tests | Test results screenshot + public repo + baseline recording | The [test matrix](docs/test-matrix.md) and the tests under `test/`; the complete output and an image of a green run of each tier, and a screenshot of the CI run page of the live tier on the published commit (run 38149146295, 2026-10-11), in [evidence/tests/](evidence/tests/README.md); the [baseline protocol](evidence/baseline/README.md). Pending: the Demolisher recording (`<pending: builder records the baseline, matrix B-01 and B-02>`). |
+| Documentation, demo and evidence | Public repo + write-up + 60-second video | The [write-up](docs/write-up.md), the [integration notes](docs/integration-notes.md) and the [evidence package](evidence/README.md), written; the package is on npm as `@mkaya13/stellar-dustin` 0.1.0 ([npm](https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0), published 2026-10-12, tag `v0.1.0`); their stories stay open for the video's hosting and the baseline recording. The video is produced ([record](evidence/demo/README.md)) and waits for the builder's hosting. |
 
 ## Configuration
 
@@ -261,7 +261,7 @@ The evidence follows SOW section 6.1; the [evidence package](evidence/README.md)
 | Week 1 | 2026-09-22 to 2026-09-28 | Fixture built, Demolisher baseline recorded, `planClose()` dry run printed | Fixture built and dry run committed (`evidence/plan/`); the Demolisher baseline recording is pending (the builder's) |
 | Week 2 | 2026-09-29 to 2026-10-05 | Zero-XLM account closed end to end with sponsored fees | Met early, on 2026-09-26 ([run](evidence/runs/20260926T125350Z/summary.md)) |
 | Week 3 | 2026-10-06 to 2026-10-12 | Disposal ladder, sponsored unwind, sequence guard, test matrix, messy fixture closed | Met early, on 2026-09-28 ([test matrix](docs/test-matrix.md), [metric close](evidence/runs/20260928T112252Z-e3-cli/summary.md), [unclosable exit](evidence/runs/20260928T125414Z-edge-frozen/summary.md)); the close of the baseline fixture itself follows its recording |
-| Week 4 | 2026-10-13 to 2026-10-19 | npm publish, 60-second demo, evidence package, write-up | Started early: the write-up, the integration notes and the evidence package are written, and 0.1.0 is prepared; the metric close was recorded again on the 0.1.0 code on 2026-09-29, and the video produced on 2026-09-29 and again on 2026-09-30. Pending, the builder's: the npm publish and the video's hosting |
+| Week 4 | 2026-10-13 to 2026-10-19 | npm publish, 60-second demo, evidence package, write-up | Started early: the write-up, the integration notes and the evidence package are written; the metric close was recorded again on the 0.1.0 code on 2026-09-29, and the video produced on 2026-09-29 and again on 2026-09-30; 0.1.0 published to npm on 2026-10-12 ([npm](https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0)). Pending, the builder's: the video's approval and hosting |
 
 The deliverable tracker of SOW Appendix A, with its evidence links, is in the [evidence package](evidence/README.md#sow-appendix-a-the-deliverable-tracker).
 

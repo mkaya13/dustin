@@ -1,6 +1,6 @@
 # Runbook: releasing 0.1.0
 
-For the builder and the agent. The builder publishes to npm and approves every step that leaves the machine (the tag push, the GitHub release, the settings change); the agent does the rest, on the builder's word, and records it. Nothing here has been run yet but the repository setting below (2026-09-30).
+For the builder and the agent. The builder publishes to npm and approves every step that leaves the machine (the tag push, the GitHub release, the settings change); the agent does the rest, on the builder's word, and records it. Run so far: the repository setting below (2026-09-30); the publish and the tag (2026-10-12: `@mkaya13/stellar-dustin` 0.1.0 from `a2e3605`, the annotated tag `v0.1.0` on that commit, pushed the same day) and the links of step 5 for them. The GitHub release with the video (steps 3 and 4) is not done.
 
 Order: the history was rewritten on 2026-09-30 ([`history-rewrite.md`](history-rewrite.md), "Done on 2026-09-30"), so the `v0.1.0` tag and the release point at the final history; first the builder's publish, then the agent's steps. `main` is protected by a repository ruleset that blocks force pushes and its deletion; tags are not affected. Every `gh` command below runs after `gh auth switch --user mkaya13` and `gh auth status`; switch `gh` back to your other account when done.
 
@@ -25,6 +25,8 @@ npm view @mkaya13/stellar-dustin@0.1.0 version gitHead dist.shasum
 
 `gitHead` is the commit npm recorded for the published tarball; the tag goes on it. Tell the agent "0.1.0 is published" with that output.
 
+Done on 2026-10-12, with one difference: `npm publish --access public --ignore-scripts`, from a clean checkout of `main` at `a2e3605` on Linux, because under the full load of `prepublishOnly` the offline tier's `test/unit/plan/properties.test.ts` hit its 5 s timeout on the builder's machine (it takes 3.4 s alone). Every gate the scripts would have run (lint, the format check, typecheck, the offline tier, the build, `check:package`) had passed on the same commit in CI, [run 38148904970](https://github.com/mkaya13/dustin/actions/runs/38148904970). `gitHead` `a2e36054b7422d89da83b8c15875a0a08b27c917`, `dist.shasum` `ef67f43187904318fac0c8a793948509fbe1700c`.
+
 ## The agent: after the publish
 
 ### 1. Check what the registry serves
@@ -34,12 +36,14 @@ T="$(mktemp -d)"
 npm view @mkaya13/stellar-dustin@0.1.0 version gitHead dist.tarball dist.shasum dist.integrity
 npm pack @mkaya13/stellar-dustin@0.1.0 --pack-destination "$T" && tar -tzf "$T"/@mkaya13/stellar-dustin-0.1.0.tgz   # the 26 files of check:package
 git worktree add "$T/at-gitHead" <gitHead> && (cd "$T/at-gitHead" && npm ci && npm pack --pack-destination "$T/local")
-shasum "$T"/@mkaya13/stellar-dustin-0.1.0.tgz "$T"/local/@mkaya13/stellar-dustin-0.1.0.tgz   # equal: the build is reproducible (review of 2026-09-29, step 3)
+shasum "$T"/@mkaya13/stellar-dustin-0.1.0.tgz "$T"/local/@mkaya13/stellar-dustin-0.1.0.tgz   # not equal for 0.1.0: see the note below
 (mkdir "$T/app" && cd "$T/app" && npm init -y >/dev/null && npm install @mkaya13/stellar-dustin@0.1.0 && npx --no-install dustin --version)   # 0.1.0
 git worktree remove "$T/at-gitHead"
 ```
 
 Stop and tell the builder if a file list, a checksum or the version differs.
+
+For 0.1.0 (2026-10-12) the file list (26 files), the install into an empty project (`npx dustin --version` printed 0.1.0) and the ESM import (`planClose` exported) were as expected; the checksums were not. The review of 2026-09-29 found two packs of one checkout identical and called the build reproducible, but the build depends on its directory: three source maps, `dist/index.cjs.map`, `dist/testing.cjs.map` and `dist/chunk-BP6VRGFM.cjs.map`, name the absolute build directory as their first `sources` entry (an artifact of the CommonJS build), so their bytes differ between a build in one directory and in another. Every other file, the code included, is identical to the rebuild of `a2e3605`. To be fixed in the next release.
 
 ### 2. The tag (on the builder's word)
 
