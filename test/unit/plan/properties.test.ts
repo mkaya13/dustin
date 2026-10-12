@@ -285,5 +285,7 @@ describe("planner invariants over generated snapshots", () => {
         "unclosable:TRUSTLINE_NOT_AUTHORIZED",
       ].sort(),
     );
-  });
+    // 600 plans take about 3.5 s alone; with the whole offline tier running in parallel on a
+    // laptop they passed the default 5 s and blocked `npm publish` (prepublishOnly) on 2026-10-12.
+  }, 30_000);
 });
