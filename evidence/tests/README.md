@@ -10,13 +10,13 @@ The SOW's evidence for Deliverable 3 is a "test results screenshot" of the passi
 | [`offline.png`](offline.png) | The 125 per-file lines and the summary of `offline.txt`, rendered from the captured terminal output (again on 2026-09-30, with the capture). |
 | [`testnet.txt`](testnet.txt) | The complete output of `DUSTIN_TESTNET=1 npm run test:testnet -- --reporter=verbose`, 22:30:31 to 22:35:33 UTC: 11 files, 58 tests passed in 301.09 s against the public testnet. Every test built its own accounts from Friendbot with fresh keys; the output holds every transaction hash the tests printed, with its purpose. |
 | [`testnet.png`](testnet.png) | The 58 per-test lines (cut at 150 characters) and the summary of `testnet.txt`, rendered from the captured terminal output; rendered again on 2026-09-30 only so that its header names the commit as the rewritten history does (`049274f`). |
-| [`testnet-ci-36757533611.txt`](testnet-ci-36757533611.txt) | The complete log of the CI run of the live tier on `main` at `e563470`, [Testnet tier, run 36757533611](https://github.com/mkaya13/dustin/actions/runs/36757533611) (11 files, 58 tests, 345.07 s, 2026-09-30), downloaded the same day and changed only as the next file was. |
-| [`testnet-ci-36560464977.txt`](testnet-ci-36560464977.txt) | The complete log of the CI run of the live tier on the 0.1.0 code, [Testnet tier, run 36560464977](https://github.com/mkaya13/dustin/actions/runs/36560464977) (11 files, 58 tests, 341.93 s), downloaded on 2026-09-30 with `gh run view 36560464977 --log`, because GitHub deletes a run's logs after the repository's retention period, 90 days here (`gh api repos/mkaya13/dustin/actions/permissions/artifact-and-log-retention`). Only the job name and the timestamp at the start of each line, the terminal colour codes and the runner's checkout directory (`<repository root>`) were changed; its header says so. |
+| [`testnet-ci-36757533611.txt`](testnet-ci-36757533611.txt) | The complete log of the CI run of the live tier on `main` at `e563470`, Testnet tier, run 36757533611 (11 files, 58 tests, 345.07 s, 2026-09-30), downloaded the same day and changed only as the next file was. The run belonged to the history before its republication on 2026-10-10 (below), so its page no longer exists and this log is its record. |
+| [`testnet-ci-36560464977.txt`](testnet-ci-36560464977.txt) | The complete log of the CI run of the live tier on the 0.1.0 code, Testnet tier, run 36560464977 (11 files, 58 tests, 341.93 s; a run of the history before 2026-10-10, whose page no longer exists), downloaded on 2026-09-30 with `gh run view 36560464977 --log`, because GitHub deletes a run's logs after the repository's retention period, 90 days here (`gh api repos/mkaya13/dustin/actions/permissions/artifact-and-log-retention`). Only the job name and the timestamp at the start of each line, the terminal colour codes and the runner's checkout directory (`<repository root>`) were changed; its header says so. |
 | [`transactions/`](transactions/README.md) | Horizon's record of each of the 208 transactions that the test matrix, the write-up, the baseline protocol and stories 3-1 to 3-4 cite only as text, one `<hash>.json` per transaction, captured on 2026-09-30 before the testnet reset of 2026-12-16; `npm run evidence:check` checks every file, compares it with Horizon while the testnet keeps it, and fails a cited transaction without a record. |
 
 What the text files hold: the output as it was captured, under three header lines that give the command, the UTC time, the commit and the Node version. Nothing is removed but ANSI codes (there were none: the output did not go to a terminal), with one change the repository rules require: vitest's `RUN` line names the local working directory, which reads `<repository root>` instead. vitest's own "Start at" is the machine's local time (UTC+3); the header gives UTC. Both files pass the seed scan (`containsSecretSeed` in `src/errors/redact.ts`, and the CI pattern `(?<![A-Z2-7])S[A-Z2-7]{55}(?![A-Z2-7])`): the live tests print public keys and hashes only.
 
-The images are not screen captures, and the builder accepted them as the SOW's "test results screenshot" on 2026-09-29 (PRD decision D-16), with one real screen capture of a CI run beside them (next section). Each is rendered from the captured terminal output with ImageMagick and says so in its first line. The summary text is the header, the per-file (offline) or per-test (live) result lines and vitest's closing lines:
+The images are not screen captures, and the builder accepted them as the SOW's "test results screenshot" on 2026-09-29 (PRD decision D-16), with one real screen capture of a CI run beside them, [`ci-run-38149146295.png`](ci-run-38149146295.png) (section "The CI screenshot"). Each is rendered from the captured terminal output with ImageMagick and says so in its first line. The summary text is the header, the per-file (offline) or per-test (live) result lines and vitest's closing lines:
 
 ```
 { echo "Rendered from the captured terminal output (evidence/tests/offline.txt), not a screen capture."
@@ -32,9 +32,9 @@ The live tier ran three times on this branch. Before the merge of main, on `f3b4
 
 Reproduce: `npm ci`, then `npm test` (8 to 15 s by the figures above) and `DUSTIN_TESTNET=1 npm run test:testnet` (about 5 minutes; it needs Friendbot and testnet Horizon, and no key or `.env`: every live test makes its own throwaway accounts).
 
-CI runs of the 0.1.0 code, commit `ab1fdae` (its source is the source of `3fd5fe5`, whose offline run was an earlier capture of `offline.txt`; the commits after it changed documents and evidence, added scripts with their unit tests (the demo, B-03, the hash remap, the stored transaction records of `evidence:check`) and left the package code alone until 2026-09-30, when the `@mkaya13/stellar-dustin/testing` entry and the schemas joined the package (PRD decisions D-17 and D-18), and both tiers ran again on that code, below): the manual testnet tier job [Testnet tier, run 36560464977](https://github.com/mkaya13/dustin/actions/runs/36560464977), 2026-09-29 11:14 to 11:20 UTC, passed 11 files and 58 tests in 341.93 s (Node 24, on GitHub's runner); the offline tier [CI, run 36560430762](https://github.com/mkaya13/dustin/actions/runs/36560430762) passed on Node 22.12.0, 22 and 24. CI passes the offline tier on every push to main.
+CI runs of the 0.1.0 code, commit `ab1fdae` (its source is the source of `3fd5fe5`, whose offline run was an earlier capture of `offline.txt`; the commits after it changed documents and evidence, added scripts with their unit tests (the demo, B-03, the hash remap, the stored transaction records of `evidence:check`) and left the package code alone until 2026-09-30, when the `@mkaya13/stellar-dustin/testing` entry and the schemas joined the package (PRD decisions D-17 and D-18), and both tiers ran again on that code, below): the manual testnet tier job Testnet tier, run 36560464977, 2026-09-29 11:14 to 11:20 UTC, passed 11 files and 58 tests in 341.93 s (Node 24, on GitHub's runner); the offline tier CI, run 36560430762, passed on Node 22.12.0, 22 and 24. Both runs belonged to the history before 2026-10-10 (below), and their pages no longer exist. CI passes the offline tier on every push to main.
 
-The CI run of the live tier on `main` at `e563470` (2026-09-30, the testing entry and the schemas in the package added to the 0.1.0 code): [Testnet tier, run 36757533611](https://github.com/mkaya13/dustin/actions/runs/36757533611), 18:17 to 18:23 UTC, passed 11 files and 58 tests in 345.07 s (Node 24, on GitHub's runner); its log is [`testnet-ci-36757533611.txt`](testnet-ci-36757533611.txt).
+The CI run of the live tier on `main` at `e563470` (2026-09-30, the testing entry and the schemas in the package added to the 0.1.0 code): Testnet tier, run 36757533611 (a run of the history before 2026-10-10, whose page no longer exists), 18:17 to 18:23 UTC, passed 11 files and 58 tests in 345.07 s (Node 24, on GitHub's runner); its log is [`testnet-ci-36757533611.txt`](testnet-ci-36757533611.txt).
 
 ## CI runs and the rewritten history
 
@@ -42,12 +42,24 @@ On 2026-09-30 the history of the repository was rewritten to remove personal dat
 
 | Run | Workflow | Commit on the run page (before the rewrite) | The same commit after the rewrite |
 |---|---|---|---|
-| [36424696971](https://github.com/mkaya13/dustin/actions/runs/36424696971) | Testnet tier | `d0d711c25f7c723251d23eff67796c31b7e538ef` | `60af60d48061e4aee57c28024a708bef3b1db6ba` |
-| [36539346346](https://github.com/mkaya13/dustin/actions/runs/36539346346) | CI | `e865bec9e052842cb6791d24e0d8215c680be5e5` | `7c53a1b7eb6cd551aa3104aa4af1db6cf672d683` |
-| [36560430762](https://github.com/mkaya13/dustin/actions/runs/36560430762) | CI | `7bd04aeecdf1dfc244181f492b5a73a54291214a` | `ab1fdae1ce4ac36e89a228e87485bf6e8a7ae1c0` |
-| [36560464977](https://github.com/mkaya13/dustin/actions/runs/36560464977) | Testnet tier | `7bd04aeecdf1dfc244181f492b5a73a54291214a` | `ab1fdae1ce4ac36e89a228e87485bf6e8a7ae1c0` |
+| 36424696971 | Testnet tier | `d0d711c25f7c723251d23eff67796c31b7e538ef` | `60af60d48061e4aee57c28024a708bef3b1db6ba` |
+| 36539346346 | CI | `e865bec9e052842cb6791d24e0d8215c680be5e5` | `7c53a1b7eb6cd551aa3104aa4af1db6cf672d683` |
+| 36560430762 | CI | `7bd04aeecdf1dfc244181f492b5a73a54291214a` | `ab1fdae1ce4ac36e89a228e87485bf6e8a7ae1c0` |
+| 36560464977 | Testnet tier | `7bd04aeecdf1dfc244181f492b5a73a54291214a` | `ab1fdae1ce4ac36e89a228e87485bf6e8a7ae1c0` |
 
-Each run tested the tree that its new commit holds, so its record stays valid. The header lines of `offline.txt` and `testnet.txt` name the new hashes. The first CI run on the rewritten history is [CI, run 36639605562](https://github.com/mkaya13/dustin/actions/runs/36639605562), green on Node 22.12.0, 22 and 24.
+Each run tested the tree that its new commit holds, so its record stays valid. The header lines of `offline.txt` and `testnet.txt` name the new hashes. The first CI run on the rewritten history was CI, run 36639605562, green on Node 22.12.0, 22 and 24.
+
+## The republished history and the current CI runs
+
+The public history of the repository was republished on 2026-10-10. The runs cited above, and every other Actions run before that date, no longer exist: their pages answer 404, so the run numbers above stay as plain text, and the two logs in this directory are the record of the live tier's runs. The workflows were recreated on the republished history, and these runs are on it:
+
+| Run | Workflow | Commit | When (UTC) | Result |
+|---|---|---|---|---|
+| [38148750380](https://github.com/mkaya13/dustin/actions/runs/38148750380) | CI, pull request #1 | `a61b5b2` | 2026-10-11, 14:49 to 14:51 UTC | green |
+| [38148904970](https://github.com/mkaya13/dustin/actions/runs/38148904970) | CI, push to `main` | `a2e3605` | 2026-10-11, 14:51 to 14:53 | green in "Offline tier (Node 22.12.0)", "Offline tier (Node 22)", "Offline tier (Node 24)" and "Web demo" |
+| [38149146295](https://github.com/mkaya13/dustin/actions/runs/38149146295) | Testnet tier, manual, branch `main` | `a2e3605` | 2026-10-11, 14:55 to 15:01 (6 m 9 s) | 11 test files and 58 tests passed |
+
+`a2e3605` (`a2e36054b7422d89da83b8c15875a0a08b27c917`) is the commit npm recorded for `@mkaya13/stellar-dustin` 0.1.0 and the commit of the tag `v0.1.0`.
 
 ## The CI screenshot
 
@@ -55,9 +67,9 @@ A screenshot of a GitHub Actions run page, taken by the builder in a browser, co
 
 | Field | Value |
 |---|---|
-| Run to capture | [Testnet tier, run 36560464977](https://github.com/mkaya13/dustin/actions/runs/36560464977) (the live tier on the 0.1.0 code, 11 files, 58 tests, 342 s); or a later run of the testnet workflow on the commit that is tagged `v0.1.0`, if the builder dispatches one |
-| File | `ci-run-36560464977.png` (or `ci-run-<run id>.png` for the later run) |
-| Screenshot | `<pending: builder captures the run page as evidence/tests/ci-run-<run id>.png>` |
-| Taken on (UTC) | `<pending>` |
+| Run captured | [Testnet tier, run 38149146295](https://github.com/mkaya13/dustin/actions/runs/38149146295) (the live tier on `main` at `a2e3605`, the commit of 0.1.0 as published and of the tag `v0.1.0`; 11 files, 58 tests, 6 m 9 s) |
+| File | [`ci-run-38149146295.png`](ci-run-38149146295.png) |
+| Screenshot | Taken by the builder in a browser and cropped to the page (no browser bar) |
+| Taken on (UTC) | 2026-10-11, about 15:15 |
 
-What the frame should show: the run's title and number, the green status, the commit, the branch `main`, the date, and the job's "Run the testnet tier" step expanded to its last lines ("Test Files 11 passed", "Tests 58 passed"). Nothing else: no other tab, no bookmark bar, no account menu opened. The page is public, so the capture holds nothing that is not already public; check it for a local path or a name anyway before committing it. Once it is committed, the row above names the file and E4-S3 is done.
+What the frame shows: the run's title ("Testnet tier #1"), the green status ("Success"), the commit `a2e3605`, the branch `main`, the trigger (manual, "14 minutes ago": the page gives a relative time, not a date) and the total duration, 6 m 9 s; below them, the job summary the workflow writes, "Vitest Test Report", with "Test Files: 11 passes" and "Test Results: 58 passes". It shows that job summary rather than the job's "Run the testnet tier" step expanded to its last lines, which this slot asked for before the capture; the counts are the same. The complete output of earlier runs of the same tier is in the two logs and `testnet.txt` above; this run's log stays on GitHub for the repository's retention period, 90 days. The page is public; the frame holds the repository owner's account name, which is also in every URL of this repository, and no local path.

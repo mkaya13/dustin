@@ -27,10 +27,11 @@ proc type {text delay} {
   }
 }
 
-# Waits for the prompt that follows a finished command.
+# Waits for the prompt that follows a finished command. Bash 5.1 and later can print the
+# bracketed-paste switches (ESC [?2004h, ESC [?2004l) and a carriage return before the prompt.
 proc prompt {} {
   expect {
-    -re {\n\$ $} { return }
+    -re {\n(\x1b\[\?2004[hl]|\r)*\$ $} { return }
     timeout { puts stderr "take.exp: timed out waiting for the prompt"; exit 1 }
     eof { puts stderr "take.exp: the shell ended"; exit 1 }
   }
@@ -40,6 +41,9 @@ proc prompt {} {
 log_user 0
 spawn -noecho env "PS1=\$ " HISTFILE=/dev/null BASH_SILENCE_DEPRECATION_WARNING=1 bash --noprofile --norc -i
 expect -re {\$ $}
+# Bracketed paste off, so the recording carries no ESC [?2004h/l around each command.
+send -- "bind 'set enable-bracketed-paste off'\r"
+expect -re {\n(\x1b\[\?2004[hl]|\r)*\$ $}
 log_user 1
 send_user -- {$ }
 after 800
