@@ -80,6 +80,11 @@ function checkBinary() {
   assert.equal(version.stdout.trim(), pkg.version);
 }
 
+/** A POSIX or Windows absolute path, or a file: URL. */
+function isAbsoluteSource(source) {
+  return /^(\/|[a-zA-Z]:[\\/]|\\\\|file:)/.test(source);
+}
+
 function checkTarball() {
   const [report] = JSON.parse(
     execFileSync("npm", ["pack", "--dry-run", "--json", "--ignore-scripts"], { encoding: "utf8" }),
@@ -115,6 +120,12 @@ function checkTarball() {
     for (const match of text.matchAll(windows)) {
       assert.ok(!StrKey.isValidEd25519SecretSeed(match[1]), `secret seed in ${file}`);
     }
+  }
+  // No source map may name the directory it was built in (0.1.0 did, in its three .cjs maps).
+  for (const file of files.filter((f) => f.endsWith(".map"))) {
+    const map = JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), "utf8"));
+    const absolute = [...map.sources, map.file ?? ""].filter((s) => isAbsoluteSource(s));
+    assert.deepEqual(absolute, [], `absolute path in ${file}`);
   }
   return files;
 }

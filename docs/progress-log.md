@@ -336,7 +336,7 @@ Next: the demo's next iterations as `docs/web-demo.md` lists them ("Roadmap"); t
 
 ### Session summary (2026-10-10 to 2026-10-12)
 
-The public history of the repository was republished on 2026-10-10, so every Actions run cited before that date answers 404. This session records what was done on the republished history and fills the links of the release runbook's step 5 for the parts that are done; the GitHub release and the video are not.
+The public history of the repository was republished on 2026-10-10, so every Actions run cited before that date answers 404. This session records what was done on the republished history and fills the links of the release runbook's step 5 for the parts that are done; the GitHub release and the video are not. Later on 2026-10-12 the baseline recordings and B-03 were made and recorded.
 
 Done:
 
@@ -347,6 +347,8 @@ Done:
 - The npm publish: the builder published `@mkaya13/stellar-dustin` 0.1.0 on 2026-10-12 (registry time 13:23:49 UTC) from a clean checkout of `main` at `a2e3605` on Linux, with `npm publish --access public --ignore-scripts`, because under the full load of `prepublishOnly` the offline tier's `test/unit/plan/properties.test.ts` hit its 5 s timeout on the builder's machine (3.4 s alone); every gate had passed on the same commit in CI (run 38148904970). `gitHead` `a2e36054b7422d89da83b8c15875a0a08b27c917`, `dist.shasum` `ef67f43187904318fac0c8a793948509fbe1700c`. Checked: 26 files, an install into an empty project with `npx dustin --version` printing 0.1.0, `planClose` in the ESM import. E4-S4 done.
 - The tag: annotated `v0.1.0` (tag object `44338b9e0731b700c18afd9a112724bcd659599d`) on `a2e3605`, pushed on 2026-10-12.
 - The links (release runbook, step 5, for the publish, the tag and the screenshot): the README's status line, install section, D3, documentation and week-4 rows; `evidence/README.md`, `evidence/tests/README.md` and the completion report (the header with the tag, the full SHA and the npm URL, D1's source commit, D3's screenshot, D4's npm row, week 4); the CHANGELOG dated 2026-10-12 with its compare and tag links; stories 4-3 and 4-4 and the tracker. Every link to a run before 2026-10-10 that `npm run evidence:check` found answering 404 now names the run as plain text with that note, or points at the runs of 2026-10-11.
+- The baseline (E1-S2, matrix B-01 and B-02): StellarExpert's Account Demolisher (v1.0.2) recorded on 2026-10-12 by an automated browser (Playwright, Chromium) at the builder's request, with the secret key field masked by a style rule, on the two fixtures rebuilt on 2026-10-11. B-01, zero spendable: its first transaction, a `manage_data` removal sourced from and paid by the account, rejected five times with `tx_insufficient_balance`, nothing on the ledger, "Error: Failed to merge the account" at 37 s, the fixture unchanged (`verify-after.json`). B-02, plus 1 XLM: the account closed in five transactions it paid (1,600 stroops), the merge co-signed by the tool's server through an intermediate account, 4.9998207 XLM to the destination. Record: `evidence/baseline/README.md`. E1-S2 done, Epic 1 done.
+- B-03: `node scripts/baseline-b03.mjs` closed two more rebuilds of the recipe with Dustin 0.1.0, three sponsor-paid fee bumps each, Horizon 404 afterwards: zero spendable, 4.0000007 XLM to the destination; plus 1 XLM, 5.0000007 XLM (`evidence/runs/20261012T142618Z-b03-base1/`, `evidence/runs/20261012T142809Z-b03-base2/`, `evidence/baseline/b03-comparison.md`). The evidence package, the completion report, the write-up, the README and the test matrix updated (28 green, 2 recorded, 2 not covered); D3 done in the tracker.
 
 Traps recorded this session:
 
@@ -357,9 +359,25 @@ Traps recorded this session:
 
 Blocked (the builder's actions, in order):
 
-1. The Demolisher recordings B-01 and B-02, then `node scripts/baseline-b03.mjs` (B-03).
-2. Watching and approving the video (E4-S6), then the GitHub release `v0.1.0` with it as an asset (release runbook, steps 3 and 4).
-3. The message to the chapter lead and the written acknowledgement.
-4. The completion report's hours, dates and next step, checked in a fresh browser and sent.
+1. Watching and approving the video (E4-S6), then the GitHub release `v0.1.0` with it as an asset (release runbook, steps 3 and 4).
+2. The message to the chapter lead and the written acknowledgement.
+3. The completion report's hours, dates and next step, checked in a fresh browser and sent.
 
-Next: the builder's remaining actions; once the video is approved and hosted, the rest of step 5 (the video's links), then E4-S6, E4-S7, E1-S2 and Epic 4 close before 2026-10-22.
+Next: the builder's remaining actions; once the video is approved and hosted, the rest of step 5 (the video's links), then E4-S6, E4-S7 and Epic 4 close before 2026-10-22.
+
+## 2026-10-15 (post-sprint), the voice-over, the hosted web demo and the completion message
+
+Done:
+
+- The video: the builder added the voice-over on 2026-10-14 (`evidence/demo/dustin-demo-60s-voiced.mp4`, local, 59.8 s; the raw recording `docs/video_voice.mp4`) and committed the take record `evidence/demo/take-20261011T155017Z/` and the refreshed GIF on `dev` (`b105cf5`). Row 3 of the handoff done; the file waits for the `v0.1.0` release page.
+- The web demo hosted: the builder deployed the production build of `web/` as a static site at <https://dustin-pebk.onrender.com/> on 2026-10-15. The README, `docs/web-demo.md` (section "Deployment"), ADR-0007 (a dated amendment) and the CHANGELOG say so; the scope is unchanged, outside the SOW, plan only.
+- A favicon for the web demo: `web/public/favicon.svg` (a disc sweeping away into dots, on the accent colour), `favicon-32.png` and `apple-touch-icon.png` rendered from it with Playwright's Chromium, linked from `web/index.html`; the web project's lint, typecheck, 33 unit tests and 18 Playwright runs pass (the parity test needs a longer limit than 5 s on Windows, where spawning the CLI is slow).
+- The message to the chapter lead rewritten as the completion submission (`docs/runbooks/chapter-lead-message.md`, English and Turkish): the four rows of SOW 6.1 with one public link each, Appendix B, the two-fixture paragraph with its request for the written acknowledgement, the web demo as a convenience outside the SOW, the next step and the hours as slots, and the pre-send steps (merge `dev`, the release with the video, the link check in a fresh browser).
+
+Blocked (the builder's actions, in order):
+
+1. Merge `dev` into `main` (the take record and the links are on `dev`), and before that drop `evidence/tests/ci-run-1.png` from `dev`: it is the uncropped screenshot with the browser's bookmarks bar and profile, which the content rules keep off the repository; `ci-run-38149146295.png` is the evidence.
+2. The GitHub release `v0.1.0` with the voiced video as its asset (release runbook, step 4), then the agent fills the video links.
+3. The message to the chapter lead, with the video link, the next step and the hours filled; then the written acknowledgement and the date.
+
+Next: once the release page exists, the video links (release runbook, step 5), E4-S6, E4-S7 and Epic 4 close; the completion report's date, hours and next step after the message is sent, before 2026-10-22.

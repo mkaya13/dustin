@@ -4,22 +4,22 @@ All notable changes to `@mkaya13/stellar-dustin` are listed here. The format fol
 
 ## [Unreleased]
 
-Post-sprint changes, outside the Instaward scope (`docs/README.md`, canonical decision 1). Nothing here changes a deliverable or the evidence.
-
 ### Added
 
-- `stepAction()` and `subjectLabel()`, the words of a plan step and of what it acts on as `renderPlan()` prints them, so a user interface that lays a plan out itself keeps the CLI's wording.
-- A plan-only web demo under `web/`, not part of the package and not hosted: a static page, built with Vite, that runs `planClose()` in the browser against the testnet Horizon and renders the plan; it never asks for a secret, and closing stays in the CLI and the SDK ([docs/web-demo.md](docs/web-demo.md), ADR-0007). Reviewed on 2026-10-01 (`docs/reviews/2026-10-01-e5-web-demo-review.md`): a Content-Security-Policy, the plan marked stale when an input changes, explorer links only for addresses with a valid checksum, the notes under a blocked status aligned with the executor, a parity test against the CLI's `--json` plan, and the page's bundle scanned by the browser-safety guard in CI.
+- A favicon for the web demo (`web/public/favicon.svg`, with a 32 px PNG and a 180 px touch icon rendered from it), linked from `web/index.html`; nothing changes in the package.
 
 ### Changed
 
-- `validatePlanOptions()`, and so `planFromSnapshot()`, `planClose()` and the CLI, refuse a `memo` that is not a string with `CONFIG_INVALID` (`Invalid plan option: memo must be a string`); before, `Buffer.byteLength` threw a `TypeError` for it, and the `TextEncoder` that replaced `Buffer` would have coerced it to text (E5-S1 review, EC-2).
-- The SEP-29 `config.memo_required` check decodes the data entry's base64 value exactly as `Buffer.from(value, "base64")` did, every character outside the alphabet skipped and decoding stopped at the first `=`; the first browser-safe version used `atob`, which throws on a stray character, so a malformed value would have read as "not required" (E5-S1 review, EC-1).
-- The SDK entry (`@mkaya13/stellar-dustin`) runs in a browser bundle: `sha256Hex` takes its digest from the Stellar SDK's `hash()` instead of `node:crypto`, and no module reachable from the entry uses `Buffer` or another Node-only API; `scripts/check-browser-safe.mjs` checks the built entry and its chunks in CI, parsing each file with the TypeScript compiler so that a string or a comment is never a finding and a bare `Buffer` or `process` value never escapes (E5-S1 review, S3). Every plan hash and snapshot hash is unchanged (`test/unit/canonical-json.test.ts`). The CLI and `@mkaya13/stellar-dustin/testing` keep Node's APIs.
+- The plan-only web demo is hosted at <https://dustin-pebk.onrender.com/> since 2026-10-15 (the production build of `web/` as a static site; `docs/web-demo.md`, section "Deployment"). It stays outside the Instaward scope and outside the package.
+
+### Fixed
+
+- The CommonJS source maps (`dist/index.cjs.map`, `dist/testing.cjs.map` and their shared chunk's) no longer name the directory the package was built in: tsup writes the generated file's absolute path as their first source and as their `file`, and `scripts/fix-sourcemaps.mjs`, run by `npm run build`, rewrites both relative to the map. The 0.1.0 tarball carries the absolute path in those three maps, so it was not byte-identical to a rebuild elsewhere; the package check (`scripts/check-package.mjs`) now fails on an absolute path in a map.
+- The planner's property test (600 generated accounts, `test/unit/plan/properties.test.ts`) has a 30-second limit instead of the default 5 seconds: on a laptop running the whole offline tier in parallel it passed 5 seconds and stopped `npm publish` in `prepublishOnly`.
 
 ## [0.1.0] - 2026-10-12
 
-Published to npm on 2026-10-12 ([`@mkaya13/stellar-dustin` 0.1.0](https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0)) from commit `a2e3605`, tagged `v0.1.0`; prepared on 2026-09-29. That commit also holds the SDK changes listed under [Unreleased] above, so the published package includes them. Testnet only. Built during the Stellar Instaward sprint of 2026-09-22 to 2026-10-22 against the accepted SOW (`SUCCESSFUL_SOW.md`); the SOW's success metric was met on 2026-09-28 (`evidence/README.md`).
+Published to npm on 2026-10-12 ([`@mkaya13/stellar-dustin` 0.1.0](https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0)) from commit `a2e3605`, tagged `v0.1.0`; prepared on 2026-09-29. It also holds the post-sprint changes of 2026-10-01 (the last two Added items, the Changed section), outside the Instaward scope (`docs/README.md`, canonical decision 1); they change no deliverable or evidence. Testnet only. Built during the Stellar Instaward sprint of 2026-09-22 to 2026-10-22 against the accepted SOW (`SUCCESSFUL_SOW.md`); the SOW's success metric was met on 2026-09-28 (`evidence/README.md`).
 
 ### Added
 
@@ -34,6 +34,14 @@ Published to npm on 2026-10-12 ([`@mkaya13/stellar-dustin` 0.1.0](https://www.np
 - JSON Schemas of the plan and the report (`schemas/plan-schema.json`, `schemas/receipt-schema.json`, shipped in the package and exported as `@mkaya13/stellar-dustin/schemas/*`), every error and stop code with its remedy (`docs/errors.md`, `remedyOf()`), the README, the integration notes, the write-up on ordering rules and known limits, and the evidence package.
 - `@mkaya13/stellar-dustin/testing`, a second entry point for an integrator's own tests: the `messy` and `edge` fixture builders (every key new from `Keypair.random()`, every account funded by Friendbot, no secret read from anywhere), `checkMessyFixture()` and the other checks, the manifest readers, and `recordedReader()` for planning offline from a fixture's recorded Horizon responses.
 - `examples/close-with-sponsor.ts` (the whole close with the typed confirmation, the events, `allowPartial`, `preferDestination` and the error codes) and `examples/plan-a-fixture.ts` (a fixture built, checked and planned offline), type-checked in CI against the package's published types.
+- `stepAction()` and `subjectLabel()`, the words of a plan step and of what it acts on as `renderPlan()` prints them, so a user interface that lays a plan out itself keeps the CLI's wording.
+- A plan-only web demo under `web/`, not part of the package and not hosted: a static page, built with Vite, that runs `planClose()` in the browser against the testnet Horizon and renders the plan; it never asks for a secret, and closing stays in the CLI and the SDK ([docs/web-demo.md](docs/web-demo.md), ADR-0007). Reviewed on 2026-10-01 (`docs/reviews/2026-10-01-e5-web-demo-review.md`): a Content-Security-Policy, the plan marked stale when an input changes, explorer links only for addresses with a valid checksum, the notes under a blocked status aligned with the executor, a parity test against the CLI's `--json` plan, and the page's bundle scanned by the browser-safety guard in CI.
+
+### Changed
+
+- `validatePlanOptions()`, and so `planFromSnapshot()`, `planClose()` and the CLI, refuse a `memo` that is not a string with `CONFIG_INVALID` (`Invalid plan option: memo must be a string`); before, `Buffer.byteLength` threw a `TypeError` for it, and the `TextEncoder` that replaced `Buffer` would have coerced it to text (E5-S1 review, EC-2).
+- The SEP-29 `config.memo_required` check decodes the data entry's base64 value exactly as `Buffer.from(value, "base64")` did, every character outside the alphabet skipped and decoding stopped at the first `=`; the first browser-safe version used `atob`, which throws on a stray character, so a malformed value would have read as "not required" (E5-S1 review, EC-1).
+- The SDK entry (`@mkaya13/stellar-dustin`) runs in a browser bundle: `sha256Hex` takes its digest from the Stellar SDK's `hash()` instead of `node:crypto`, and no module reachable from the entry uses `Buffer` or another Node-only API; `scripts/check-browser-safe.mjs` checks the built entry and its chunks in CI, parsing each file with the TypeScript compiler so that a string or a comment is never a finding and a bare `Buffer` or `process` value never escapes (E5-S1 review, S3). Every plan hash and snapshot hash is unchanged (`test/unit/canonical-json.test.ts`). The CLI and `@mkaya13/stellar-dustin/testing` keep Node's APIs.
 
 ### Security
 

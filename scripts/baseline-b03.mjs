@@ -217,7 +217,7 @@ Recipe hash of the baseline fixture \`${BASELINE_ID}\`: \`${baseline.recipeHash}
 
 | Row | Tool | Fixture | Transactions submitted | Where it stopped | Account afterwards | XLM to the destination |
 |---|---|---|---|---|---|---|
-| B-01 | StellarExpert Account Demolisher | the baseline fixture \`${BASELINE_ID}\` (zero spendable) | ${tool("transactions")} | ${tool("stop point")} | ${tool("state")} | ${tool("XLM delivered")} |
+| B-01 | StellarExpert Account Demolisher | the baseline recipe, zero spendable ([README.md](README.md#fixture)) | ${tool("transactions")} | ${tool("stop point")} | ${tool("state")} | ${tool("XLM delivered")} |
 | B-02 | StellarExpert Account Demolisher | the baseline recipe plus 1 XLM | ${tool("transactions")} | ${tool("stop point")} | ${tool("state")} | ${tool("XLM delivered")} |
 ${rows.map((r) => r.line).join("\n")}
 

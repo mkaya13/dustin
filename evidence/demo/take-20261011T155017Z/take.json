@@ -1,0 +1,193 @@
+{
+  "stamp": "20261011T155017Z",
+  "version": "0.1.0",
+  "id": "messy-20261011T155021Z-0af7a2",
+  "account": "GBBKY67KWLD2C4A3OC75HKBFGGVJPZ3LDVG7ADG3UJGJS5CADG5KPRIS",
+  "destination": "GB2TXR47ONIZYQBNQKM6GIQNMJEDQUMYMDPKQ4OPAXR2K36E4NXOCUR2",
+  "sponsor": "GCEQT6KAZRFJUOUTIG4T7ARJ3YYKT2ZVCZGPUI2PXEDBWMO6QIN7YH2Q",
+  "hashes": [
+    "3477ef22f63396bbaf4f3f7c6f7ce5a29e7d73a64aeda49d33033655638411f4",
+    "2b28811cab502756d77863c8bc2298a2c8d642758ec08f978a5d7eb5815325a6",
+    "e3c6cd1ff35493af3b90bcc1691a14844f587f40da80f8832e1e2cb4d9b59b77"
+  ],
+  "ledgers": [
+    5142065,
+    5142066,
+    5142067
+  ],
+  "fees": [
+    1000,
+    300,
+    200
+  ],
+  "duration": 59.8,
+  "size": [
+    1920,
+    1080
+  ],
+  "sha256": "25e5ae082283d19c82c47f7e6e9104e7036298301ca50bb7452d452c69c1c7cd",
+  "bytes": 13658140,
+  "shots": [
+    {
+      "label": "title",
+      "start": 0,
+      "duration": 5,
+      "caption": "This Stellar account holds 4 XLM but cannot spend any of it, so it cannot even pay the fee to close itself."
+    },
+    {
+      "label": "before-balances",
+      "start": 5,
+      "duration": 4,
+      "caption": "Before: 4 trustlines with balances, 2 open offers, 1 data entry. All 4 XLM are locked as reserve."
+    },
+    {
+      "label": "before-history",
+      "start": 9,
+      "duration": 4,
+      "caption": null
+    },
+    {
+      "label": "unsponsored",
+      "start": 13,
+      "duration": 3,
+      "caption": "Without a sponsor, the account cannot pay a fee: the fixture builder's own unsponsored attempt is rejected.",
+      "recording": {
+        "from": 44.361959,
+        "to": 44.361959,
+        "maxGap": null,
+        "rendered": 0.001
+      }
+    },
+    {
+      "label": "plan",
+      "start": 16,
+      "duration": 10,
+      "caption": "The plan is read-only. Every step has a reason. Nothing is signed yet.",
+      "recording": {
+        "from": 0.5295190000000001,
+        "to": 6.552727,
+        "maxGap": 1,
+        "rendered": 3.8686769999999995
+      }
+    },
+    {
+      "label": "close-command",
+      "start": 26,
+      "duration": 2.153990999999998,
+      "caption": "To run it, you confirm the destination.",
+      "recording": {
+        "from": 0.7835880000000017,
+        "to": 2.937579,
+        "maxGap": null,
+        "rendered": 1.8549909999999983
+      }
+    },
+    {
+      "label": "confirmation",
+      "start": 28.153990999999998,
+      "duration": 2.846009000000002,
+      "caption": null,
+      "recording": {
+        "from": 6.094011,
+        "to": 10.472591000000001,
+        "maxGap": 1.2,
+        "rendered": 2.497677
+      }
+    },
+    {
+      "label": "execution",
+      "start": 31,
+      "duration": 13,
+      "caption": "Three transactions. Every fee is paid by the sponsor. The account pays nothing.",
+      "recording": {
+        "from": 10.472591000000001,
+        "to": 25.344799000000002,
+        "maxGap": 2.9000000000000012,
+        "rendered": 11.562492000000002
+      }
+    },
+    {
+      "label": "receipt",
+      "start": 44,
+      "duration": 5,
+      "caption": "Result: 4 XLM arrived at the destination. Fees paid by the account: zero.",
+      "recording": {
+        "from": 25.344799000000002,
+        "to": 25.414971,
+        "maxGap": null,
+        "rendered": 0.07117199999999946
+      }
+    },
+    {
+      "label": "after-explorer",
+      "start": 49,
+      "duration": 3.5,
+      "caption": "After: the account no longer exists. Anyone can check this link."
+    },
+    {
+      "label": "after-horizon-404",
+      "start": 52.5,
+      "duration": 3.5,
+      "caption": null
+    },
+    {
+      "label": "end",
+      "start": 56,
+      "duration": 3.8,
+      "caption": "Dustin. Read the plan, then close the account. Testnet only."
+    }
+  ],
+  "pages": [
+    "https://stellar.expert/explorer/testnet/account/GBBKY67KWLD2C4A3OC75HKBFGGVJPZ3LDVG7ADG3UJGJS5CADG5KPRIS",
+    "https://stellar.expert/explorer/testnet/account/GBBKY67KWLD2C4A3OC75HKBFGGVJPZ3LDVG7ADG3UJGJS5CADG5KPRIS",
+    "https://stellar.expert/explorer/testnet/account/GBBKY67KWLD2C4A3OC75HKBFGGVJPZ3LDVG7ADG3UJGJS5CADG5KPRIS",
+    "https://horizon-testnet.stellar.org/accounts/GBBKY67KWLD2C4A3OC75HKBFGGVJPZ3LDVG7ADG3UJGJS5CADG5KPRIS"
+  ],
+  "frames": [
+    "01-before-balances.png",
+    "02-before-history.png",
+    "03-plan.png",
+    "04-confirmation.png",
+    "05-transactions.png",
+    "06-receipt.png",
+    "07-explorer-after.png",
+    "08-horizon-404.png"
+  ],
+  "buildHashes": [
+    [
+      "create-accounts",
+      "9f89803e83d98e516f94b322e53aab45f1f0407fb66d59e4ffe3576dfb44ee3c",
+      5142049
+    ],
+    [
+      "trustlines",
+      "8182e3b1ee52d19ddb868b11f8f10a9029f03f0fa53e6b9817497f5254de966b",
+      5142050
+    ],
+    [
+      "sponsored-trustline",
+      "32dd00b87bdbf0541e77fd63593968c1da0fa4acb225372518845763337f2279",
+      5142051
+    ],
+    [
+      "dust-payments",
+      "9f05980fddf285eebaba6ae9580ff4f73c879598520199e9b9e8e86c45b84c4e",
+      5142052
+    ],
+    [
+      "market-maker-bid",
+      "a95dc956540f6cda954905646ecc16c33cf600d3ab905ad46bb99ceb8c033bfd",
+      5142053
+    ],
+    [
+      "offers-and-data",
+      "2f334ab0ead76dd53030d4b43f1f01d23bebd3c8f34385b7aff04558ca2f6b32",
+      5142054
+    ],
+    [
+      "drain-to-minimum",
+      "28ddb77aa348b2c543994a9244a9edb0a751726ba40fac63ccaad1d688a39197",
+      5142055
+    ]
+  ]
+}

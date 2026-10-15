@@ -23,7 +23,7 @@ Rebuilt on 2026-10-11 from Friendbot with the same recipe: the keys of the first
    Every check must pass.
 3. Start the screen recording (terminal prompt reduced to `$ `, no personal names, paths or other tabs visible).
 4. Open https://stellar.expert/demolisher/testnet in a clean browser profile. Paste the fixture's secret key (the `fixture` entry in `.fixture/messy-20261011T142222Z-3d11c6/keys.json`; testnet only) and the destination above. Start the tool and keep recording until it stops. Record the exact message it shows.
-5. Stop the recording. Save it as `evidence/baseline/demolisher-2026-10-11.mp4` (or keep it outside git and put the link below if it is too large) and a still frame of the stopping point as `evidence/baseline/demolisher-stop.png`.
+5. Stop the recording. Save it as `evidence/baseline/demolisher-2026-10-12.mp4` (or keep it outside git and put the link below if it is too large) and a still frame of the stopping point as `evidence/baseline/demolisher-stop.png`.
 6. Snapshot the fixture after the run:
    `node dist/cli/main.js fixture verify .fixture/messy-20261011T142222Z-3d11c6/manifest.json --snapshot evidence/baseline/verify-after.json`
    Every check must still pass, which proves Dustin later closes the same, unchanged account.
@@ -53,11 +53,15 @@ From the tool's public client source (`business-logic/demolisher/demolisher-tx-b
 
 ## Result
 
+Both recordings were made on 2026-10-12 by an automated browser (Playwright 1.63, Chromium, a fresh profile, a 1600 x 1000 window) that drives the page as a person would: it types the source and the destination, fills the secret key, clicks "Merge account" and records until the page has not changed for 45 seconds. The secret key field is masked in the recording by a style rule the recorder adds (`-webkit-text-security: disc`), which changes only how the field is drawn; the page reads the real value. Beside each recording, a log of the page's status lines and of every request the page posted, with Horizon's answers.
+
 | Field | Value |
 |---|---|
-| Recorded on (UTC) | to be filled |
-| Tool URL and version seen | to be filled |
-| Where it stopped (message, time in the recording) | to be filled |
-| Transactions it submitted | to be filled |
-| Fixture unchanged afterwards | to be filled (`verify-after.json`) |
-| B-02: fixture, recorded on, where it stopped, transactions | to be filled (the account prepared by `--prepare-b02`, above) |
+| Recorded on (UTC) | B-01: 2026-10-12, 14:18; B-02: 2026-10-12, 14:20 |
+| Tool URL and version seen | https://stellar.expert/demolisher/testnet, footer "2026 © StellarExpert v1.0.2" |
+| Where it stopped (message, time in the recording) | B-01: "Dropping data entries…" at 12 s, then "Error: Failed to merge the account" at 37 s ([`demolisher-2026-10-12.mp4`](demolisher-2026-10-12.mp4), still [`demolisher-stop.png`](demolisher-stop.png)) |
+| Transactions it submitted | B-01: its first transaction, one `manage_data` operation removing `dustin.fixture`, sourced from and paid by the account (fee 200 stroops, no fee bump), submitted five times between 12 s and 37 s, re-signed each time; Horizon rejected every submission with `tx_insufficient_balance`, so none reached the ledger (the envelopes are in [`demolisher-2026-10-12-log.txt`](demolisher-2026-10-12-log.txt)). As expected above. |
+| Fixture unchanged afterwards | Yes: [`verify-after.json`](verify-after.json), taken right after the recording, every check passed |
+| B-02: fixture, recorded on, where it stopped, transactions | `messy-20261011T142354Z-f796e3` (`GA7BSNFNFMD2FB4FXLTXHVFMW6ZGO46PNVDGFSHMD6MCZ4U5AHRCNHZ3`, 1 XLM spendable), 2026-10-12 14:20 UTC: the tool closed the account. "Congratulation! Account ... has been merged successfully." at 35 s ([`demolisher-b02.mp4`](demolisher-b02.mp4), still [`demolisher-b02-stop.png`](demolisher-b02-stop.png), log [`demolisher-b02-log.txt`](demolisher-b02-log.txt)). Five transactions, each sourced from and paid by the account, 1600 stroops in all: the data entry [`e1a20386...`](https://stellar.expert/explorer/testnet/tx/e1a20386a869f4c3bccd904ab72af9fb1a8762c29498f3fc95001a103b6ecd21) (ledger 5158253), the offers [`b27ea0ab...`](https://stellar.expert/explorer/testnet/tx/b27ea0abe5e7c088f1c7fbc9e6c8d11c07b5e64ac270655eb949eb196cae58bd), the sale [`d2c14bd6...`](https://stellar.expert/explorer/testnet/tx/d2c14bd6676012de5f8be0374502d236ff01e68035a2e1f20fd179951dad5486), the trustlines [`812c5f4b...`](https://stellar.expert/explorer/testnet/tx/812c5f4bb9815f129d492baf4b364d64ada2aa4e813b50e83fe100a4a96c7337), and the merge [`64e9ec93...`](https://stellar.expert/explorer/testnet/tx/64e9ec93cfed4ad9d2e3dcf6d3e1a7eeed8e0d10b9ac605c66b3bec896754307) (ledger 5158257, memo "StellarExpert merge tool"), which the tool's server co-signed: the account merged into the intermediate account `GA4C3WUE7TL7GNXHF27B6Z54VMRCPTW2JH2OQRHH4U2EHPI6CCLMERGE`, which paid 4.9998207 XLM to the destination in the same transaction. Horizon answers 404 for the account. |
+
+The two rows together: the existing tool closes this recipe when the account can pay its own fees (B-02), and cannot start when it holds zero spendable XLM (B-01), which is the case Dustin's sponsor-paid fee bumps cover (B-03).

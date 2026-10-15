@@ -1,0 +1,46 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://horizon-testnet.stellar.org/accounts/GBBKY67KWLD2C4A3OC75HKBFGGVJPZ3LDVG7ADG3UJGJS5CADG5KPRIS/operations?cursor=&limit=1&order=desc"
+    },
+    "next": {
+      "href": "https://horizon-testnet.stellar.org/accounts/GBBKY67KWLD2C4A3OC75HKBFGGVJPZ3LDVG7ADG3UJGJS5CADG5KPRIS/operations?cursor=22085009598849025&limit=1&order=desc"
+    },
+    "prev": {
+      "href": "https://horizon-testnet.stellar.org/accounts/GBBKY67KWLD2C4A3OC75HKBFGGVJPZ3LDVG7ADG3UJGJS5CADG5KPRIS/operations?cursor=22085009598849025&limit=1&order=asc"
+    }
+  },
+  "_embedded": {
+    "records": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://horizon-testnet.stellar.org/operations/22085009598849025"
+          },
+          "transaction": {
+            "href": "https://horizon-testnet.stellar.org/transactions/e3c6cd1ff35493af3b90bcc1691a14844f587f40da80f8832e1e2cb4d9b59b77"
+          },
+          "effects": {
+            "href": "https://horizon-testnet.stellar.org/operations/22085009598849025/effects"
+          },
+          "succeeds": {
+            "href": "https://horizon-testnet.stellar.org/effects?order=desc&cursor=22085009598849025"
+          },
+          "precedes": {
+            "href": "https://horizon-testnet.stellar.org/effects?order=asc&cursor=22085009598849025"
+          }
+        },
+        "id": "22085009598849025",
+        "paging_token": "22085009598849025",
+        "transaction_successful": true,
+        "source_account": "GBBKY67KWLD2C4A3OC75HKBFGGVJPZ3LDVG7ADG3UJGJS5CADG5KPRIS",
+        "type": "account_merge",
+        "type_i": 8,
+        "created_at": "2026-10-11T15:52:02Z",
+        "transaction_hash": "e3c6cd1ff35493af3b90bcc1691a14844f587f40da80f8832e1e2cb4d9b59b77",
+        "account": "GBBKY67KWLD2C4A3OC75HKBFGGVJPZ3LDVG7ADG3UJGJS5CADG5KPRIS",
+        "into": "GB2TXR47ONIZYQBNQKM6GIQNMJEDQUMYMDPKQ4OPAXR2K36E4NXOCUR2"
+      }
+    ]
+  }
+}

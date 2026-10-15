@@ -182,7 +182,7 @@ If shot 6 runs longer than 13 seconds in real time, cut the waits between confir
 
 Dustin has no command that submits an unsponsored transaction on purpose, and the video must not pretend it does. Three honest options, in order of preference:
 
-1. **A frame of the baseline recording**, once it exists: the existing tool's first transaction refused on the baseline fixture (story E1-S2, [`evidence/baseline/README.md`](../evidence/baseline/README.md)). The caption then says it is the existing tool. `<pending: builder records the Demolisher baseline>`.
+1. **A frame of the baseline recording**: the existing tool's first transaction refused on the baseline recipe (story E1-S2, [`evidence/baseline/README.md`](../evidence/baseline/README.md)). The frame exists since 2026-10-12: [`evidence/baseline/demolisher-stop.png`](../evidence/baseline/demolisher-stop.png), from the B-01 recording. The caption then says it is the existing tool.
 2. **The fixture builder's own probe**: `dustin fixture create` submits one unbumped transaction from the drained fixture and logs "Unbumped transaction from the fixture rejected with tx_insufficient_balance" on standard error, as the last line of its build log, right before the summary and the checks on standard output. Record fixture A's build (step 2 above) and use the frame that shows that line; the caption says it is the fixture builder's check.
 3. **Cut the shot** and give its three seconds to shot 4.
 

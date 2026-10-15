@@ -1,0 +1,77 @@
+$ dustin plan GDTETQF6FVJBDNB53JZFXCEPHDACQIGM5Q3JAYF52KVTYDJAURYITJ5L --to GALTIQEVTVTKEOH3C5KLMX4XR5U7XOAWC6AZZFEQSDNI7NZYVB2SDUDL --sponsor GCAIICGDWXB5NKLSXGQNDFYXS4O7U7IHS6FKJQK3CNDG6VX5EQ25YGHP
+Dustin plan  (dry run: nothing is signed, nothing is submitted)
+Network      testnet   ledger 5,158,353   observed 2026-10-12T14:29:12Z
+Account      GDTETQF6FVJBDNB53JZFXCEPHDACQIGM5Q3JAYF52KVTYDJAURYITJ5L
+Balance      5.0000000 XLM, minimum balance 4.0000000 XLM, spendable 1.0000000 XLM (base reserve 0.5000000)
+Destination  GALTIQEVTVTKEOH3C5KLMX4XR5U7XOAWC6AZZFEQSDNI7NZYVB2SDUDL
+Sponsor      GCAIICGDWXB5NKLSXGQNDFYXS4O7U7IHS6FKJQK3CNDG6VX5EQ25YGHP
+Fees         bid up to 0.0482430 XLM (32,162 stroops per operation), paid by the sponsor; the account pays 0
+Budget       5.0000000 XLM per close for the sponsor; the bid above is within it
+Status       CLOSABLE: the plan ends in a merge
+
+Steps, in execution order
+  S01  tx 1  cancel offer 912367: sells 0.0000002 DUSTA for XLM
+             why: Open offer 912367 sells 0.0000002 DUSTA for XLM. Offers are subentries that block the merge, and their
+             liabilities stop the balance from moving and the trustline from being removed; it is cancelled with amount
+             0.
+  S02  tx 1  cancel offer 912368: sells 0.0000002 DUSTC for DUSTB
+             why: Open offer 912368 sells 0.0000002 DUSTC for DUSTB. Offers are subentries that block the merge, and
+             their liabilities stop the balance from moving and the trustline from being removed; it is cancelled with
+             amount 0.
+  S03  tx 1  return 0.0000003 DUSTB to issuer GC6Y...N4GE (burn)
+             why: Horizon found no strict-send path to XLM for the full balance. Pay the 0.0000003 DUSTB back to its
+             issuer GC6YI5IZUGV5OI4JMANJ2XFDVXLZ6F7J2MJKFDUNDZETOTEIQGJCN4GE, which burns it.
+  S04  tx 1  remove trustline DUSTB
+             why: The DUSTB trustline is empty once the balance is disposed of; a trustline is a subentry that blocks
+             the merge. Removing it (limit 0) releases its 0.5 XLM reserve to this account.
+  S05  tx 1  return 0.0000005 DUSTC to issuer GC6Y...N4GE (burn)
+             why: Horizon found no strict-send path to XLM for the full balance. Pay the 0.0000005 DUSTC back to its
+             issuer GC6YI5IZUGV5OI4JMANJ2XFDVXLZ6F7J2MJKFDUNDZETOTEIQGJCN4GE, which burns it.
+  S06  tx 1  remove trustline DUSTC
+             why: The DUSTC trustline is empty once the balance is disposed of; a trustline is a subentry that blocks
+             the merge. Removing it (limit 0) releases its 0.5 XLM reserve to this account.
+  S07  tx 1  return 0.0000001 SPTA to issuer GC6Y...N4GE (burn)
+             why: Horizon found no strict-send path to XLM for the full balance. Pay the 0.0000001 SPTA back to its
+             issuer GC6YI5IZUGV5OI4JMANJ2XFDVXLZ6F7J2MJKFDUNDZETOTEIQGJCN4GE, which burns it.
+  S08  tx 1  remove trustline SPTA (reserve sponsored by GDVD...MCLU)
+             why: The SPTA trustline is empty once the balance is disposed of; a trustline is a subentry that blocks the
+             merge. Removing it (limit 0) needs only this account's signature and returns its 0.5 XLM reserve to the
+             reserve sponsor GDVDU7ZBQ3ORV5Q2JXOUKOOONEF4JGLO24XC4V7IXUE3BZQP533HMCLU, not to this account.
+  S09  tx 1  delete data entry "dustin.fixture"
+             why: Data entry "dustin.fixture" is a subentry that blocks the merge; a manage-data operation without a
+             value deletes it.
+  S10  tx 2  sell 0.0000007 DUSTA for XLM: path payment, quote 0.0000007, at least 0.0000006
+             why: Sell the full 0.0000007 DUSTA for about 0.0000007 XLM (at least 0.0000006) with a strict-send path
+             payment to this account; the XLM leaves with the merge. It runs in its own transaction so a moved market
+             cannot roll back the rest.
+  S11  tx 2  remove trustline DUSTA
+             why: The DUSTA trustline is empty once the balance is disposed of; a trustline is a subentry that blocks
+             the merge. Removing it (limit 0) releases its 0.5 XLM reserve to this account.
+  S12  tx 3  merge into GALT...DUDL (cannot be undone)
+             why: Every subentry is removed by the earlier steps; the account sponsors nothing, is not immutable and the
+             destination exists. The merge sends the whole XLM balance to
+             GALTIQEVTVTKEOH3C5KLMX4XR5U7XOAWC6AZZFEQSDNI7NZYVB2SDUDL and deletes the account. It cannot be undone.
+
+Transactions (3, each fee-bumped by the sponsor; inner fee 0)
+  tx 1  cleanup    9 ops   bid 321,620 stroops
+             Deterministic cleanup with no market dependency (offer cancellations, returns to issuers, transfers to the
+             destination, removal of emptied trustlines and data entries), grouped into one fee-bumped transaction of at
+             most 100 operations.
+  tx 2  convert    2 ops   bid 96,486 stroops
+             Market-dependent sale of DUSTA isolated with its trustline removal, so a moved market cannot roll back the
+             rest of the close.
+  tx 3  merge      1 op    bid 64,324 stroops
+             The merge runs alone after a fresh preflight, because the path payments before it depend on the market and
+             could change the plan.
+
+If everything succeeds
+  5.0000007 XLM arrives at GALT...DUDL (balance 5.0000000 + sale 0.0000007)
+  Reserves released to sponsors: 0.5000000 XLM, never this account's
+    0.5000000 XLM reserve unlocked for sponsor GDVD...MCLU (trustline SPTA)
+  0.0000000 XLM paid by the account; every fee is sponsored
+  sequence guard ok: sequence at merge 22154918781517831 is below ledger 5,158,354 << 32
+  plan hash 25d3092278174254f5205654c0f2b28b84296345d0f3315a85ae0cb9040c9153
+
+Next: dustin close GDTETQF6FVJBDNB53JZFXCEPHDACQIGM5Q3JAYF52KVTYDJAURYITJ5L \
+        --to GALTIQEVTVTKEOH3C5KLMX4XR5U7XOAWC6AZZFEQSDNI7NZYVB2SDUDL --execute
+[exit code 0]

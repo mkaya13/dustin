@@ -29,9 +29,9 @@ development_status:
   0-3-continuous-integration: done
   0-4-env-testnet-guard-license: done
   epic-0-retrospective: optional
-  epic-1: in-progress
+  epic-1: done
   1-1-messy-fixture-builder: done
-  1-2-baseline-recording: in-progress
+  1-2-baseline-recording: done
   1-3-account-inspector: done
   1-4-plan-model-ordering-engine: done
   1-5-grouping-fee-estimation: done
@@ -146,7 +146,7 @@ stories:
     title: Record the baseline run of the existing tool
     epic: E1
     week: 1
-    status: in-progress
+    status: done
     estimate_hours: 4
     deliverable: D3
   - key: 1-3-account-inspector
@@ -517,12 +517,17 @@ sessions:
       gates green in CI on that commit); the tarball differs from a rebuild only in three CommonJS source
       maps that name the build directory, to be fixed in the next release. The tag v0.1.0 pushed; the links
       of release runbook step 5 for the publish, the tag and the screenshot filled; old run links reworded.
-      E4-S4 done.
+      E4-S4 done. Later the same day: the Demolisher (v1.0.2) recorded by an automated browser at the
+      builder's request on two rebuilds of the baseline recipe: B-01, zero spendable, its first transaction
+      rejected five times with tx_insufficient_balance, nothing on the ledger, the fixture unchanged; B-02, plus
+      1 XLM, the account closed in five transactions it paid, the merge co-signed by the tool's server. B-03:
+      Dustin 0.1.0 closed two more rebuilds in three sponsor-paid fee bumps each (4.0000007 and 5.0000007 XLM
+      to the destination). The evidence, the write-up, the README and the matrix (28 green, 2 recorded, 2 not
+      covered) updated; D3 done. E1-S2 done, Epic 1 done.
     blocked_on_builder:
-      - the Demolisher recordings B-01 and B-02, then node scripts/baseline-b03.mjs (B-03)
       - watching, approving and hosting the video (E4-S6); the GitHub release v0.1.0 with it as an asset
       - the chapter lead's message and written acknowledgement (docs/runbooks/chapter-lead-message.md)
       - the completion report's hours, dates and next step, then sending it
     next: >-
       The builder's remaining actions of docs/HANDOFF.md; the video's links once it is approved and hosted
-      (release runbook steps 3 to 5); then E4-S6, E4-S7, E1-S2 and Epic 4 close before 2026-10-22.
+      (release runbook steps 3 to 5); then E4-S6, E4-S7 and Epic 4 close before 2026-10-22.

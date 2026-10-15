@@ -1,0 +1,63 @@
+   2.0 s  PAGE  https://stellar.expert/demolisher/testnet  (Account demolisher for Stellar Network accounts | StellarExpert)
+   8.7 s  INPUT  source GBAFBJOQ6ITXALBTERTORGEFKQTHBYU4DPYJYLKZVXGN2622BKQWUF3D, destination GAL6DG3L5RFP5JIGQMGGRGWYDW24I2N3YDVFHBACEAXBJRFCLO67PEKK, secret key of the fixture (masked)
+  10.3 s  CLICK  Merge account
+  12.1 s  POST  https://horizon-testnet.stellar.org/transactions
+  12.3 s  PAGE TEXT  Merging account GBAFBJ…QWUF3D, please wait. | Dropping data entries…
+  12.4 s  CONSOLE  Failed to load resource: the server responded with a status of 400 (Bad Request)
+  12.4 s  CONSOLE  ui: Transaction submission failed. Server responded: 400 Bad Request
+    at https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:224077
+    at s (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:73908)
+    at Fi (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f
+  12.4 s  CONSOLE  ui: Transaction submission failed. Server responded: 400 Bad Request
+    at https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:224077
+    at s (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:73908)
+    at Fi (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f
+  12.4 s  RESPONSE  400 https://horizon-testnet.stellar.org/transactions { "type": "https://stellar.org/horizon-errors/transaction_failed", "title": "Transaction Failed", "status": 400, "detail": "The transaction failed when submitted to the stellar network. The `extras.result_codes` field on this response contains further details. Descriptions of each code can be found at: https://developers.stellar.org/api/errors/http-status-codes/horizon-specific/transaction-failed/", "extras": { "envelope_xdr": "AAAAAgAAAABAUKXQ8idwLDMkZuiYhVQmcOKcG/CcLVmtzN17WgqhagAAAMgATnIBAAAABQAAAAEAAAAAAAAAAAAAAABqzO1nAAAAAAAAAAEAAAAAAAAACgAAAA5kdXN0aW4uZml4dHVyZQAAAAAAAAAAAAAAAAABWgqhagAAAED3rLOTXfQxEBaGYr4fbXyWtWv6+OypM8VA4HOGS/DdmpqfjGcilzxNjQSKae9Fm1QZ9QxTh/w6W7MKRgwj7q8C", "result_codes": { "transaction": "tx_insufficient_balance" }, "result_xdr": "AAAAAAAAAGT////5AAAAAA==" } }
+  17.8 s  POST  https://horizon-testnet.stellar.org/transactions
+  18.1 s  CONSOLE  Failed to load resource: the server responded with a status of 400 (Bad Request)
+  18.1 s  CONSOLE  ui: Transaction submission failed. Server responded: 400 Bad Request
+    at https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:224077
+    at s (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:73908)
+    at Fi (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f
+  18.1 s  CONSOLE  ui: Transaction submission failed. Server responded: 400 Bad Request
+    at https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:224077
+    at s (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:73908)
+    at Fi (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f
+  18.1 s  RESPONSE  400 https://horizon-testnet.stellar.org/transactions { "type": "https://stellar.org/horizon-errors/transaction_failed", "title": "Transaction Failed", "status": 400, "detail": "The transaction failed when submitted to the stellar network. The `extras.result_codes` field on this response contains further details. Descriptions of each code can be found at: https://developers.stellar.org/api/errors/http-status-codes/horizon-specific/transaction-failed/", "extras": { "envelope_xdr": "AAAAAgAAAABAUKXQ8idwLDMkZuiYhVQmcOKcG/CcLVmtzN17WgqhagAAAMgATnIBAAAABQAAAAEAAAAAAAAAAAAAAABqzO1tAAAAAAAAAAEAAAAAAAAACgAAAA5kdXN0aW4uZml4dHVyZQAAAAAAAAAAAAAAAAABWgqhagAAAECamZJRhU9NFcvpZHkHbynXt0cLrQvBHKBGrVbNFH+DXts2hydQJ44P0Jz1T+lmf35P3l2b7fUKxLmQfcazC9sF", "result_codes": { "transaction": "tx_insufficient_balance" }, "result_xdr": "AAAAAAAAAGT////5AAAAAA==" } }
+  25.0 s  PAGE TEXT  Retrieving source account information…
+  25.0 s  POST  https://horizon-testnet.stellar.org/transactions
+  25.3 s  CONSOLE  Failed to load resource: the server responded with a status of 400 (Bad Request)
+  25.3 s  CONSOLE  ui: Transaction submission failed. Server responded: 400 Bad Request
+    at https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:224077
+    at s (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:73908)
+    at Fi (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f
+  25.3 s  CONSOLE  ui: Transaction submission failed. Server responded: 400 Bad Request
+    at https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:224077
+    at s (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:73908)
+    at Fi (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f
+  25.3 s  RESPONSE  400 https://horizon-testnet.stellar.org/transactions { "type": "https://stellar.org/horizon-errors/transaction_failed", "title": "Transaction Failed", "status": 400, "detail": "The transaction failed when submitted to the stellar network. The `extras.result_codes` field on this response contains further details. Descriptions of each code can be found at: https://developers.stellar.org/api/errors/http-status-codes/horizon-specific/transaction-failed/", "extras": { "envelope_xdr": "AAAAAgAAAABAUKXQ8idwLDMkZuiYhVQmcOKcG/CcLVmtzN17WgqhagAAAMgATnIBAAAABQAAAAEAAAAAAAAAAAAAAABqzO10AAAAAAAAAAEAAAAAAAAACgAAAA5kdXN0aW4uZml4dHVyZQAAAAAAAAAAAAAAAAABWgqhagAAAEAduEGzosJlWiv+XZQ2VBdLsZj20faALiQr8euYEZc67DKd6E8jUgfI5IEGgns36Q/5P+VvYUfYIgxIQzdf6csJ", "result_codes": { "transaction": "tx_insufficient_balance" }, "result_xdr": "AAAAAAAAAGT////5AAAAAA==" } }
+  26.0 s  PAGE TEXT  Dropping data entries…
+  31.0 s  POST  https://horizon-testnet.stellar.org/transactions
+  31.3 s  CONSOLE  Failed to load resource: the server responded with a status of 400 (Bad Request)
+  31.3 s  CONSOLE  ui: Transaction submission failed. Server responded: 400 Bad Request
+    at https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:224077
+    at s (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:73908)
+    at Fi (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f
+  31.3 s  CONSOLE  ui: Transaction submission failed. Server responded: 400 Bad Request
+    at https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:224077
+    at s (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:73908)
+    at Fi (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f
+  31.3 s  RESPONSE  400 https://horizon-testnet.stellar.org/transactions { "type": "https://stellar.org/horizon-errors/transaction_failed", "title": "Transaction Failed", "status": 400, "detail": "The transaction failed when submitted to the stellar network. The `extras.result_codes` field on this response contains further details. Descriptions of each code can be found at: https://developers.stellar.org/api/errors/http-status-codes/horizon-specific/transaction-failed/", "extras": { "envelope_xdr": "AAAAAgAAAABAUKXQ8idwLDMkZuiYhVQmcOKcG/CcLVmtzN17WgqhagAAAMgATnIBAAAABQAAAAEAAAAAAAAAAAAAAABqzO16AAAAAAAAAAEAAAAAAAAACgAAAA5kdXN0aW4uZml4dHVyZQAAAAAAAAAAAAAAAAABWgqhagAAAECya/tkH1ecN5s+SKNkKIISpwEjEqmQXyzLR+k10fjXQ3EUq6TURGGOM2l1NFHfwnsvw8jwy7j1aIpBfnP6WVoO", "result_codes": { "transaction": "tx_insufficient_balance" }, "result_xdr": "AAAAAAAAAGT////5AAAAAA==" } }
+  36.6 s  POST  https://horizon-testnet.stellar.org/transactions
+  36.9 s  CONSOLE  Failed to load resource: the server responded with a status of 400 (Bad Request)
+  36.9 s  CONSOLE  ui: Transaction submission failed. Server responded: 400 Bad Request
+    at https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:224077
+    at s (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:73908)
+    at Fi (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f
+  36.9 s  CONSOLE  ui: Transaction submission failed. Server responded: 400 Bad Request
+    at https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:224077
+    at s (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f.js:1:73908)
+    at Fi (https://stellar.expert/319.17481f743e72d74e78c831395c70e88f
+  36.9 s  RESPONSE  400 https://horizon-testnet.stellar.org/transactions { "type": "https://stellar.org/horizon-errors/transaction_failed", "title": "Transaction Failed", "status": 400, "detail": "The transaction failed when submitted to the stellar network. The `extras.result_codes` field on this response contains further details. Descriptions of each code can be found at: https://developers.stellar.org/api/errors/http-status-codes/horizon-specific/transaction-failed/", "extras": { "envelope_xdr": "AAAAAgAAAABAUKXQ8idwLDMkZuiYhVQmcOKcG/CcLVmtzN17WgqhagAAAMgATnIBAAAABQAAAAEAAAAAAAAAAAAAAABqzO2AAAAAAAAAAAEAAAAAAAAACgAAAA5kdXN0aW4uZml4dHVyZQAAAAAAAAAAAAAAAAABWgqhagAAAECQax8jgTd5kny8TpeEjEIJDfwiC1uPH0votxB1HkUcwNt8th7iSQI1ap6y2dLU+qYjfq+iTjIO+9Y5zf9FbJsG", "result_codes": { "transaction": "tx_insufficient_balance" }, "result_xdr": "AAAAAAAAAGT////5AAAAAA==" } }
+  37.1 s  PAGE TEXT  Source - public key (address) of your account | Destination - public key of the account that will receive funds | Transaction memo - required if you are sending to an anchor or exchange | Secret key - private key of your account | Error: Failed to merge the account | Merge account
+  83.0 s  STOP  no change on the page for 45 s
