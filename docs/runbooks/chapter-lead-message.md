@@ -7,7 +7,7 @@ After the reply: keep the reply itself off the repository (it names a person), a
 ## Before sending
 
 1. Merge `dev` into `main` (a pull request, CI green). The record of the close shown in the video, `evidence/demo/take-20261011T155017Z/`, is on `dev` only; every link below points at `main`.
-2. Create the GitHub release `v0.1.0` from the tag and upload the video as its asset ([`release.md`](release.md), step 4); the file is `evidence/demo/dustin-demo-60s-voiced.mp4` (59.8 s, with the voice-over), not in git. Put the asset's URL in the `<video link>` slot. The agent then fills the video's link in the README, the evidence package and the demo record.
+2. Done on 2026-10-15: the GitHub release `v0.1.0` holds the video as its asset, <https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4>, and the message below carries that link.
 3. Open every link of the message in a fresh browser session (no login) and check that each reaches the intended page; the evidence package has the same list ([`evidence/README.md`](../../evidence/README.md#checking-this-page)).
 4. Choose the next step of SOW section 7 for the `<next step>` slot. The options are worked through in [`docs/next-steps/scf-path.md`](../next-steps/scf-path.md); its recommendation is a follow-on Instaward scoped to integrator readiness.
 5. Your hours are optional in the message: the award is fixed at $5,000, and the hours go into the completion report for transparency.
@@ -23,7 +23,7 @@ After the reply: keep the reply itself off the repository (it names a person), a
 > - Repository: <https://github.com/mkaya13/dustin>
 > - npm package: <https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0>
 > - The evidence package, mapped row by row to the SOW (6.1, 6.2, Appendix A and Appendix B): <https://github.com/mkaya13/dustin/blob/main/evidence/README.md>
-> - The 60-second video of a full close from the CLI, start to finish: <video link>
+> - The 60-second video of a full close from the CLI, start to finish, with a voice-over: <https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4> (an asset of the release <https://github.com/mkaya13/dustin/releases/tag/v0.1.0>)
 >
 > **The four rows of SOW 6.1:**
 >
@@ -65,7 +65,7 @@ After the reply: keep the reply itself off the repository (it names a person), a
 > - Depo: <https://github.com/mkaya13/dustin>
 > - npm paketi: <https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0>
 > - SOW'a satır satır eşlenmiş kanıt paketi (6.1, 6.2, Ek A ve Ek B): <https://github.com/mkaya13/dustin/blob/main/evidence/README.md>
-> - CLI'dan baştan sona tam bir kapanışı gösteren 60 saniyelik video: <video linki>
+> - CLI'dan baştan sona tam bir kapanışı gösteren, seslendirmeli 60 saniyelik video: <https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4> (sürüm sayfasının eki: <https://github.com/mkaya13/dustin/releases/tag/v0.1.0>)
 >
 > **SOW 6.1'in dört satırı:**
 >
