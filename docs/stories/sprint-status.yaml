@@ -55,14 +55,14 @@ development_status:
   3-6-edge-case-test-matrix: done
   3-7-full-fixture-close: done
   epic-3-retrospective: optional
-  epic-4: in-progress
+  epic-4: done
   4-1-cli-output-polish: done
   4-2-error-handling-polish: done
   4-3-test-evidence-reproducibility: done
   4-4-npm-publish-readme-integration-notes: done
   4-5-write-up: done
-  4-6-demo-video: review
-  4-7-evidence-package: in-progress
+  4-6-demo-video: done
+  4-7-evidence-package: done
   epic-4-retrospective: optional
   # Post-sprint, outside the SOW and the 200 h ledger (docs/README.md canonical decision 1, ADR-0007).
   epic-5: done
@@ -531,3 +531,22 @@ sessions:
     next: >-
       The builder's remaining actions of docs/HANDOFF.md; the video's links once it is approved and hosted
       (release runbook steps 3 to 5); then E4-S6, E4-S7 and Epic 4 close before 2026-10-22.
+  - date: "2026-10-15"
+    sprint_day: post-sprint
+    summary: >-
+      The builder added a voice-over to the demo take of 2026-10-11 (2026-10-14), published the GitHub
+      release v0.1.0 in the browser with the video as its asset dustin-demo-first-sow.mp4 (15,716,048 bytes,
+      59.8 s), and deployed the plan-only web demo at https://dustin-pebk.onrender.com/ (outside the SOW;
+      README, docs/web-demo.md, ADR-0007 amended, CHANGELOG). The video's links filled (release runbook
+      step 5): README, evidence/README.md (6.1 D2 and the documentation row, Appendix A D2 and D4 done, the
+      pending table), evidence/demo/README.md, the take record, the completion report, SUCCESSFUL_SOW.md
+      Appendix A, docs/demo-video-script.md. E4-S6 and E4-S7 done, Epic 4 done. A favicon for the web demo.
+      The chapter lead message rewritten as the completion submission (English and Turkish) with the video
+      link in it.
+    blocked_on_builder:
+      - dropping evidence/tests/ci-run-1.png from dev (the uncropped screenshot), then merging dev into main
+      - sending the chapter lead message (docs/runbooks/chapter-lead-message.md) and the written acknowledgement
+      - the completion report's hours, date and next step
+    next: >-
+      Record the acknowledgement date when it comes; fill the report's date; a 0.1.1 release would ship
+      the source-map fix and the favicon.

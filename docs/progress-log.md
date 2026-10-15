@@ -369,15 +369,21 @@ Next: the builder's remaining actions; once the video is approved and hosted, th
 
 Done:
 
-- The video: the builder added the voice-over on 2026-10-14 (`evidence/demo/dustin-demo-60s-voiced.mp4`, local, 59.8 s; the raw recording `docs/video_voice.mp4`) and committed the take record `evidence/demo/take-20261011T155017Z/` and the refreshed GIF on `dev` (`b105cf5`). Row 3 of the handoff done; the file waits for the `v0.1.0` release page.
+- The video: the builder added the voice-over on 2026-10-14 (`evidence/demo/dustin-demo-first-sow.mp4`, local, 59.8 s; the raw recording `docs/video_voice.mp4`) and committed the take record `evidence/demo/take-20261011T155017Z/` and the refreshed GIF on `dev` (`b105cf5`). Row 3 of the handoff done; the file waits for the `v0.1.0` release page.
 - The web demo hosted: the builder deployed the production build of `web/` as a static site at <https://dustin-pebk.onrender.com/> on 2026-10-15. The README, `docs/web-demo.md` (section "Deployment"), ADR-0007 (a dated amendment) and the CHANGELOG say so; the scope is unchanged, outside the SOW, plan only.
 - A favicon for the web demo: `web/public/favicon.svg` (a disc sweeping away into dots, on the accent colour), `favicon-32.png` and `apple-touch-icon.png` rendered from it with Playwright's Chromium, linked from `web/index.html`; the web project's lint, typecheck, 33 unit tests and 18 Playwright runs pass (the parity test needs a longer limit than 5 s on Windows, where spawning the CLI is slow).
 - The message to the chapter lead rewritten as the completion submission (`docs/runbooks/chapter-lead-message.md`, English and Turkish): the four rows of SOW 6.1 with one public link each, Appendix B, the two-fixture paragraph with its request for the written acknowledgement, the web demo as a convenience outside the SOW, the next step and the hours as slots, and the pre-send steps (merge `dev`, the release with the video, the link check in a fresh browser).
 
+- The release (release runbook steps 3 to 5): the builder published the GitHub release `v0.1.0` in the browser on 2026-10-15 (13:44 UTC) with the voiced video as its asset `dustin-demo-first-sow.mp4` (15,716,048 bytes, SHA-256 `ab704f3d01b99e9f1465716467564da4dfd90f8eb0a908c48c83e1145ece4656`; the `.srt` not attached); the asset answers 200 with the file's size. The video's links filled: the README (Demo, D2 and the documentation row, week 4), `evidence/README.md` (6.1, Appendix A with D2 and D4 done, the pending table), `evidence/demo/README.md` rewritten for the hosted take, the take record, the completion report (D2 done, D4, week 4, the quality checklist), `SUCCESSFUL_SOW.md` Appendix A, `docs/demo-video-script.md`, the release runbook and the handoff. E4-S6 and E4-S7 done, Epic 4 done. The chapter lead message carries the video link.
+
+Trap recorded this session:
+
+- **A pull request merges what the branch held when it was opened.** Pull request #2 (`dafabae`, 2026-10-15) brought `main` only up to `ac3c764`; the later commits of `dev` (`b105cf5`, `1175908`) were pushed after it was opened and are not on `main`. Check `git log origin/main..origin/dev` after every merge.
+
 Blocked (the builder's actions, in order):
 
-1. Merge `dev` into `main` (the take record and the links are on `dev`), and before that drop `evidence/tests/ci-run-1.png` from `dev`: it is the uncropped screenshot with the browser's bookmarks bar and profile, which the content rules keep off the repository; `ci-run-38149146295.png` is the evidence.
-2. The GitHub release `v0.1.0` with the voiced video as its asset (release runbook, step 4), then the agent fills the video links.
-3. The message to the chapter lead, with the video link, the next step and the hours filled; then the written acknowledgement and the date.
+1. Drop `evidence/tests/ci-run-1.png` from `dev`: it is the uncropped screenshot with the browser's bookmarks bar and profile, which the content rules keep off the repository; `ci-run-38149146295.png` is the evidence. Then push `dev` and merge it into `main` with a new pull request, so that the take record, the video links, the favicon and the message reach `main`, where every link of the message points.
+2. The message to the chapter lead (`docs/runbooks/chapter-lead-message.md`), with the next step and the hours filled; then the written acknowledgement and the date.
+3. The completion report's hours, date and next step.
 
-Next: once the release page exists, the video links (release runbook, step 5), E4-S6, E4-S7 and Epic 4 close; the completion report's date, hours and next step after the message is sent, before 2026-10-22.
+Next: record the acknowledgement date when it comes and fill the report's date; a 0.1.1 release would ship the source-map fix and the favicon.
