@@ -1,6 +1,6 @@
 # Message to the chapter lead: the completion of the SOW, with the two-fixture reading of week 3
 
-For the builder to send, once the pre-send steps below are done. One message does two things: it submits the evidence of completion (SOW section 6) for the chapter lead's verification checklist (SOW 6.2), and it asks for the written confirmation of how the SOW's week-3 wording is read (canonical decision 3 in [`docs/README.md`](../README.md)); the evidence package lists that confirmation as pending ([`evidence/README.md`](../../evidence/README.md#pending-the-builders-actions)). Send one of the two versions below, in the language you use with the chapter lead, from your usual channel. Replace every `<...>` before sending; the links are to the public repository and need no login.
+For the builder to send, once the pre-send steps below are done. One message does two things: it submits the evidence of completion (SOW section 6) for the chapter lead's verification checklist (SOW 6.2), and it asks for the written confirmation of how the SOW's week-3 wording is read (canonical decision 3 in [`docs/README.md`](../README.md)); the evidence package lists that confirmation as pending ([`evidence/README.md`](../../evidence/README.md#pending-the-builders-actions)). Send one of the two versions below, in the language you use with the chapter lead, from your usual channel. Every slot is filled; the links are to the public repository and need no login.
 
 After the reply: keep the reply itself off the repository (it names a person), and tell the agent the date. The agent then replaces `<pending: chapter lead's acknowledgement>` in `evidence/README.md` and `evidence/completion-report.md` with "acknowledged in writing on <date>; the reply is held off-repository", as the SOW copy does for the signed original, and fills the report's date.
 
@@ -9,8 +9,8 @@ After the reply: keep the reply itself off the repository (it names a person), a
 1. Merge `dev` into `main` (a pull request, CI green). The record of the close shown in the video, `evidence/demo/take-20261011T155017Z/`, is on `dev` only; every link below points at `main`.
 2. Done on 2026-10-15: the GitHub release `v0.1.0` holds the video as its asset, <https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4>, and the message below carries that link.
 3. Open every link of the message in a fresh browser session (no login) and check that each reaches the intended page; the evidence package has the same list ([`evidence/README.md`](../../evidence/README.md#checking-this-page)).
-4. Choose the next step of SOW section 7 for the `<next step>` slot. The options are worked through in [`docs/next-steps/scf-path.md`](../next-steps/scf-path.md); its recommendation is a follow-on Instaward scoped to integrator readiness.
-5. Your hours are optional in the message: the award is fixed at $5,000, and the hours go into the completion report for transparency.
+4. The next step of SOW section 7 is filled in the message: a follow-on Instaward scoped to integrator readiness, the recommendation of [`docs/next-steps/scf-path.md`](../next-steps/scf-path.md) (wallet signing is phase 2 of [`docs/web-demo.md`](../web-demo.md), "Roadmap"). Change it if you decide otherwise.
+5. Hours are not in the message: the award is fixed at $5,000, and the hours go into the completion report for transparency.
 
 ## English
 
@@ -45,14 +45,12 @@ After the reply: keep the reply itself off the repository (it names a person), a
 >
 > **Outside the SOW, for convenience:** a plan-only web page, so that you can see what the planner says about an account without a terminal: <https://dustin-pebk.onrender.com/>. Paste any testnet account (the example button fills the fixture account) and press Plan. It only plans: it never asks for a secret key and signs nothing. It is not part of the deliverables.
 >
-> **Next step (SOW section 7):** <next step, and one sentence why>.
->
-> <Optional: Effort: planned 200 hours; actual <hours>. The award is fixed; the hours are for transparency.>
+> **Next step (SOW section 7):** apply for a follow-on Instaward, scoped to integrator readiness: wallet signing of the close from the browser (the wallet signs for the account, the integrator's own process pays the fees, so no secret ever reaches a page) and a first named wallet integration of the published package, while development continues independently in the meantime.
 >
 > The testnet is scheduled to reset on 2026-12-16; every piece of evidence that depends on live testnet state is also committed as files in the repository, so the links above stay checkable after it.
 >
 > Thank you,
-> <your name or handle>
+> Mert Kaya (GitHub: mkaya13)
 
 ## Türkçe
 
@@ -87,11 +85,9 @@ After the reply: keep the reply itself off the repository (it names a person), a
 >
 > **SOW kapsamı dışında, kolaylık olsun diye:** terminal olmadan planlayıcının bir hesap için ne söylediğini görebileceğiniz, yalnızca plan çıkaran bir web sayfası: <https://dustin-pebk.onrender.com/>. Herhangi bir testnet hesabını yapıştırın (örnek düğmesi fixture hesabını doldurur) ve Plan'a basın. Sayfa yalnızca planlar: hiçbir zaman gizli anahtar istemez ve hiçbir şey imzalamaz. Teslimatların parçası değildir.
 >
-> **Sonraki adım (SOW bölüm 7):** <sonraki adım ve tek cümleyle gerekçesi>.
->
-> <İsteğe bağlı: Efor: planlanan 200 saat; gerçekleşen <saat>. Ödül sabittir; saatler şeffaflık içindir.>
+> **Sonraki adım (SOW bölüm 7):** entegratör hazırlığına odaklı bir devam Instaward'ına başvurmak: kapanışın tarayıcıdan cüzdanla imzalanması (hesap adına cüzdan imzalar, ücretleri entegratörün kendi süreci öder; böylece hiçbir gizli anahtar bir sayfaya ulaşmaz) ve yayımlanan paketin ilk somut cüzdan entegrasyonu; bu arada geliştirme bağımsız olarak sürecek.
 >
 > Testnet'in 2026-12-16'da sıfırlanması planlı; canlı testnet durumuna bağlı her kanıt depoya dosya olarak da işlenmiş durumda, dolayısıyla yukarıdaki linkler sıfırlamadan sonra da kontrol edilebilir.
 >
 > Teşekkürler,
-> <adınız veya kullanıcı adınız>
+> Mert Kaya (GitHub: mkaya13)
