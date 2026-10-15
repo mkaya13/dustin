@@ -4,6 +4,14 @@ All notable changes to `@mkaya13/stellar-dustin` are listed here. The format fol
 
 ## [Unreleased]
 
+### Added
+
+- A favicon for the web demo (`web/public/favicon.svg`, with a 32 px PNG and a 180 px touch icon rendered from it), linked from `web/index.html`; nothing changes in the package.
+
+### Changed
+
+- The plan-only web demo is hosted at <https://dustin-pebk.onrender.com/> since 2026-10-15 (the production build of `web/` as a static site; `docs/web-demo.md`, section "Deployment"). It stays outside the Instaward scope and outside the package.
+
 ### Fixed
 
 - The CommonJS source maps (`dist/index.cjs.map`, `dist/testing.cjs.map` and their shared chunk's) no longer name the directory the package was built in: tsup writes the generated file's absolute path as their first source and as their `file`, and `scripts/fix-sourcemaps.mjs`, run by `npm run build`, rewrites both relative to the map. The 0.1.0 tarball carries the absolute path in those three maps, so it was not byte-identical to a rebuild elsewhere; the package check (`scripts/check-package.mjs`) now fails on an absolute path in a map.

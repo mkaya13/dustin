@@ -156,7 +156,7 @@ The [integration notes](docs/integration-notes.md) cover the whole wallet flow: 
 
 ## Web demo (outside the SOW)
 
-A plan-only page, added after the sprint and outside the Instaward scope ([docs/web-demo.md](docs/web-demo.md), [ADR-0007](docs/adr/ADR-0007-web-demo-plan-only.md)): paste a testnet account, and the SDK's read-only planner runs in your browser against Horizon (GET requests only) and shows the plan the CLI would print, with the exact commands to run it yourself. It never asks for a secret key; closing happens in your terminal or your own code. It is local only and not hosted:
+A plan-only page, added after the sprint and outside the Instaward scope ([docs/web-demo.md](docs/web-demo.md), [ADR-0007](docs/adr/ADR-0007-web-demo-plan-only.md)): paste a testnet account, and the SDK's read-only planner runs in your browser against Horizon (GET requests only) and shows the plan the CLI would print, with the exact commands to run it yourself. It never asks for a secret key; closing happens in your terminal or your own code. It is hosted at <https://dustin-pebk.onrender.com/> (the production build of `web/`, deployed by the builder on 2026-10-15), and runs locally too:
 
 ```bash
 npm ci && npm run build            # the page imports the built SDK entry, dist/index.js

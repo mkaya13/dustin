@@ -364,3 +364,20 @@ Blocked (the builder's actions, in order):
 3. The completion report's hours, dates and next step, checked in a fresh browser and sent.
 
 Next: the builder's remaining actions; once the video is approved and hosted, the rest of step 5 (the video's links), then E4-S6, E4-S7 and Epic 4 close before 2026-10-22.
+
+## 2026-10-15 (post-sprint), the voice-over, the hosted web demo and the completion message
+
+Done:
+
+- The video: the builder added the voice-over on 2026-10-14 (`evidence/demo/dustin-demo-60s-voiced.mp4`, local, 59.8 s; the raw recording `docs/video_voice.mp4`) and committed the take record `evidence/demo/take-20261011T155017Z/` and the refreshed GIF on `dev` (`b105cf5`). Row 3 of the handoff done; the file waits for the `v0.1.0` release page.
+- The web demo hosted: the builder deployed the production build of `web/` as a static site at <https://dustin-pebk.onrender.com/> on 2026-10-15. The README, `docs/web-demo.md` (section "Deployment"), ADR-0007 (a dated amendment) and the CHANGELOG say so; the scope is unchanged, outside the SOW, plan only.
+- A favicon for the web demo: `web/public/favicon.svg` (a disc sweeping away into dots, on the accent colour), `favicon-32.png` and `apple-touch-icon.png` rendered from it with Playwright's Chromium, linked from `web/index.html`; the web project's lint, typecheck, 33 unit tests and 18 Playwright runs pass (the parity test needs a longer limit than 5 s on Windows, where spawning the CLI is slow).
+- The message to the chapter lead rewritten as the completion submission (`docs/runbooks/chapter-lead-message.md`, English and Turkish): the four rows of SOW 6.1 with one public link each, Appendix B, the two-fixture paragraph with its request for the written acknowledgement, the web demo as a convenience outside the SOW, the next step and the hours as slots, and the pre-send steps (merge `dev`, the release with the video, the link check in a fresh browser).
+
+Blocked (the builder's actions, in order):
+
+1. Merge `dev` into `main` (the take record and the links are on `dev`), and before that drop `evidence/tests/ci-run-1.png` from `dev`: it is the uncropped screenshot with the browser's bookmarks bar and profile, which the content rules keep off the repository; `ci-run-38149146295.png` is the evidence.
+2. The GitHub release `v0.1.0` with the voiced video as its asset (release runbook, step 4), then the agent fills the video links.
+3. The message to the chapter lead, with the video link, the next step and the hours filled; then the written acknowledgement and the date.
+
+Next: once the release page exists, the video links (release runbook, step 5), E4-S6, E4-S7 and Epic 4 close; the completion report's date, hours and next step after the message is sent, before 2026-10-22.
