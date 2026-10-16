@@ -2,7 +2,7 @@
 
 > Status: final for release 0.1.0, written on 2026-09-28 and updated on 2026-09-29 for the fixes of the Epic 4 review (story E4-S4, PRD FR-26). The API below is what `src/index.ts` exports on the main branch on that date, with the names of PRD section 7 (PRD decision D-2). The package `@mkaya13/stellar-dustin` 0.1.0 is prepared; publishing it to npm is the builder's action and still pending, so section 1 also gives the from-source path. While the version starts with 0, a minor release may still change the API.
 
-These notes are for a wallet developer who wants to offer "close this account" to users: plan the close, show it, get the account holder's approval, execute it with the wallet's own signer and a sponsor that pays every fee, and handle what can go wrong. Why the steps come in the order they do is in the [write-up](write-up.md).
+These notes are for a wallet developer who wants to offer "close this account" to users: Plan the close, show it, get the account holder's approval, execute it with the wallet's own signer and a sponsor that pays every fee, and handle what can go wrong. Why the steps come in the order they do is in the [write-up](write-up.md).
 
 ## 1. Install and runtime
 

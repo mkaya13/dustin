@@ -7,6 +7,7 @@ All notable changes to `@mkaya13/stellar-dustin` are listed here. The format fol
 ### Added
 
 - A favicon for the web demo (`web/public/favicon.svg`, with a 32 px PNG and a 180 px touch icon rendered from it), linked from `web/index.html`; nothing changes in the package.
+- A top bar on the web demo with the mark, the name and links to the project's X account and npm page (inline SVG icons, new tab, `noopener noreferrer`); the page heading no longer says "testnet" (the banner, the tab title and the policy still do).
 
 ### Changed
 
