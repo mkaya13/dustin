@@ -4,7 +4,7 @@
 
 Dustin closes messy Stellar testnet accounts: it cancels offers, disposes of leftover balances, removes trustlines and data entries, and merges the account into a destination you choose. Every transaction is fee-bumped by a sponsor, so an account holding zero spendable XLM, which cannot pay for its own teardown, can still be closed. `planClose()` shows the whole ordered plan before anything is signed, so a wallet can offer account closure without sending its users to a web form.
 
-The gap: the existing StellarExpert Account Demolisher sources and pays every transaction from the account being closed and has no fee-bump or sponsored-reserve handling ([client source](https://github.com/stellar-expert/stellar-expert-explorer/blob/master/business-logic/demolisher/demolisher-tx-builder.js)), so an account at its minimum reserve cannot even start. Other tools, and how Dustin differs from each, are in the [write-up](docs/write-up.md) (section 9, prior art).
+The gap: the existing StellarExpert Account Demolisher sources and pays every transaction from the account being closed and has no fee-bump or sponsored-reserve handling ([client source](https://github.com/stellar-expert/stellar-expert-explorer/blob/master/business-logic/demolisher/demolisher-tx-builder.js)), so an account at its minimum reserve cannot even start. The other tools, and how Dustin differs from each, are summarised [below](#how-dustin-differs-from-the-other-account-closers) and detailed in the [write-up](docs/write-up.md) (section 9, prior art).
 
 > **Status: version 0.1.0.** The package is `@mkaya13/stellar-dustin` (command `dustin`); 0.1.0 was published to npm on 2026-10-12 ([npm](https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0), `npm install @mkaya13/stellar-dustin`) from the commit tagged `v0.1.0`; installing from source (below) is the alternative. Built during a 30-day Stellar Instaward sprint (2026-09-22 to 2026-10-22). The SOW's success metric was met on 2026-09-28 and recorded again on the 0.1.0 code on 2026-09-29: a zero-spendable messy account closed on testnet with every fee paid by a sponsor ([evidence package](evidence/README.md)). The 60-second video was produced on 2026-09-29 and again on 2026-09-30, with StellarExpert's pages, and waits for the builder's approval and hosting. The existing tool was recorded on the baseline recipe on 2026-10-12: with zero spendable XLM it stopped at its first transaction, with 1 XLM spendable it closed the account ([evidence/baseline/](evidence/baseline/README.md)). Testnet only.
 
@@ -14,13 +14,30 @@ The 60-second video of a full close from the CLI, with a voice-over: [dustin-dem
 
 ![dustin close --execute: the typed confirmation, three sponsor-paid fee bumps, the receipt](evidence/demo/dustin-demo.gif)
 
-Until then, the recorded CLI close on the 0.1.0 code, of 2026-09-29, can be checked in a browser (the links stop resolving at the testnet reset of 2026-12-16):
+Besides the video, the recorded CLI close on the 0.1.0 code, of 2026-09-29, can be checked in a browser (the links stop resolving at the testnet reset of 2026-12-16):
 
 - the closed account: [explorer](https://stellar.expert/explorer/testnet/account/GCIVEA6YVJCSYE2Y7V2IUEYATOO36X7GQOAYNOI2MDNOW7HI4LPJVKZT), and [Horizon](https://horizon-testnet.stellar.org/accounts/GCIVEA6YVJCSYE2Y7V2IUEYATOO36X7GQOAYNOI2MDNOW7HI4LPJVKZT), which answers 404;
 - its three fee-bump transactions, each paid by the sponsor: [cleanup](https://stellar.expert/explorer/testnet/tx/835457ceff4b0443ec52ebbb408edc8988627e5de8442d28dda85b3331b52a5b), [sale](https://stellar.expert/explorer/testnet/tx/c6c99beddca7685293bdb0e156e320cbb4189e4247e4451578b60e82ba76de61), [merge](https://stellar.expert/explorer/testnet/tx/dd56e18f152dc7f15ee370dce9b8ddae556e90f04dd1cd52fe3281df4bf118e2);
 - the destination, which received 4.0000007 XLM: [explorer](https://stellar.expert/explorer/testnet/account/GBR43GJ2WAHU7FPEAYLNFR4WJUQMCJGOOS6ESF2O6ZBB6GVWL6FVS3OY).
 
 The command's own output, with the receipt, is [`transcript.txt`](evidence/runs/20260929T111408Z-e4-cli/transcript.txt), and the plan it printed first is [`plan.txt`](evidence/runs/20260929T111408Z-e4-cli/plan.txt). The same close was first recorded on 2026-09-28, before the output was polished ([CLI](evidence/runs/20260928T112252Z-e3-cli/summary.md), [SDK](evidence/runs/20260928T112239Z-e3/summary.md)).
+
+## How Dustin differs from the other account closers
+
+Dustin is not the first tool that closes Stellar accounts. The others are websites with a server in the flow: the user pastes a key or connects a wallet, and the tool's backend builds the transactions, in two cases through a mediator account the tool controls. Dustin is a library and a CLI that run inside the integrator's own process, with no server, no API key and no mediator, so a wallet, an anchor or a custodian can close accounts for its users in its own code. The comparison below was verified from the tools' sources on 2026-09-25 ([competitive landscape](docs/analysis/competitive-landscape.md); the full account, with what to check for each claim, is the [write-up](docs/write-up.md), section 9); the projects named may have changed since.
+
+| | [StellarExpert Account Demolisher](https://stellar.expert/demolisher/public/) | [LumenWipe](https://github.com/LumenWipe/lumenwipe) (SCF #44) | [Account Demolisher](https://communityfund.stellar.org/submissions/recqvIs2iRu34ESGo) (SCF #44) | Dustin |
+|---|---|---|---|---|
+| Form | Web form, secret key pasted; a private server co-signs the merge | Web app, hosted API, an SDK that is an HTTP client to that API | Web app with a mediator account; no library, no CLI | Library and CLI, in your process; no server, no mediator |
+| Who pays the fees | The account being closed | The account, or the tool's own sponsor through a hosted endpoint (API key, capped fee) | The account; fee-bump envelopes are rejected | A sponsor key you hold, within a budget you set; every transaction is a fee bump |
+| An account with zero spendable XLM | Cannot start ([recorded](evidence/baseline/README.md)) | In code since 2026-09-08, through the hosted sponsor | Not served | The primary case, [closed on testnet](evidence/README.md) |
+| Preview before signing | None | A dry-run plan | A dry-run plan | `planClose()`: read-only, a reason and a fee estimate per step, a plan hash that execution refuses to deviate from |
+| Sponsored trustlines | Not handled | Claimable-balance sponsorship handled; accounts that sponsor others blocked | Stops when the account sponsors anything | Unwound by the account alone; the reserve goes back to its sponsor |
+| `ACCOUNT_MERGE_SEQNUM_TOO_FAR` | Not guarded | Mapped to "please retry" after the fact | Not guarded | Detected before the merge, with the unblocking ledger; the CLI waits |
+| Public fixture, test matrix, baseline recording | No | Promised | Promised | [Fixture builder](docs/test-matrix.md), 32-row matrix, the existing tool [recorded on the same recipe](evidence/baseline/b03-comparison.md) |
+| Soroban and DeFi positions | No | Yes | Yes | Detected and reported, out of scope by design |
+
+What Dustin does not try to be: a third website for individuals, a DeFi position exiter, or a mediator service for exchange destinations. The retail case is served three times over; the layer under it, for integrators, was served zero times. An unfunded planner from the same SCF round, [scf-account-demolisher](https://github.com/bleu/scf-account-demolisher), is prior art for Dustin's planner; Dustin adds the execution, the sponsored close and the published evidence. The planner and the test matrix are offered to the funded projects as a shared layer; all three code bases are MIT or Apache 2.0.
 
 ## Install
 
