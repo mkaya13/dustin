@@ -23,7 +23,7 @@ After the reply: keep the reply itself off the repository (it names a person), a
 > - Repository: <https://github.com/mkaya13/dustin>
 > - npm package: <https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0>
 > - The evidence package, mapped row by row to the SOW (6.1, 6.2, Appendix A and Appendix B): <https://github.com/mkaya13/dustin/blob/main/evidence/README.md>
-> - The 60-second video of a full close from the CLI, start to finish, with a voice-over: <https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4> (an asset of the release <https://github.com/mkaya13/dustin/releases/tag/v0.1.0>)
+> - The 60-second video of a full close from the CLI, start to finish, with a voice-over: <https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4> (an asset of the release <https://github.com/mkaya13/dustin/releases/tag/v0.1.0>; also on YouTube: <https://www.youtube.com/watch?v=JoTat4bXGR0>)
 >
 > **The four rows of SOW 6.1:**
 >
@@ -63,7 +63,7 @@ After the reply: keep the reply itself off the repository (it names a person), a
 > - Depo: <https://github.com/mkaya13/dustin>
 > - npm paketi: <https://www.npmjs.com/package/@mkaya13/stellar-dustin/v/0.1.0>
 > - SOW'a satır satır eşlenmiş kanıt paketi (6.1, 6.2, Ek A ve Ek B): <https://github.com/mkaya13/dustin/blob/main/evidence/README.md>
-> - CLI'dan baştan sona tam bir kapanışı gösteren, seslendirmeli 60 saniyelik video: <https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4> (sürüm sayfasının eki: <https://github.com/mkaya13/dustin/releases/tag/v0.1.0>)
+> - CLI'dan baştan sona tam bir kapanışı gösteren, seslendirmeli 60 saniyelik video: <https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4> (sürüm sayfasının eki: <https://github.com/mkaya13/dustin/releases/tag/v0.1.0>; YouTube'da da: <https://www.youtube.com/watch?v=JoTat4bXGR0>)
 >
 > **SOW 6.1'in dört satırı:**
 >

@@ -4,7 +4,7 @@ SOW Deliverable 2 and the documentation row of SOW 6.1 ask for a 60-second video
 
 | Field | Value |
 |---|---|
-| Video link | [dustin-demo-first-sow.mp4](https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4), an asset of the [`v0.1.0` release](https://github.com/mkaya13/dustin/releases/tag/v0.1.0), published 2026-10-15 ([`docs/runbooks/release.md`](../../docs/runbooks/release.md), step 4) |
+| Video link | [dustin-demo-first-sow.mp4](https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4), an asset of the [`v0.1.0` release](https://github.com/mkaya13/dustin/releases/tag/v0.1.0), published 2026-10-15; also on [YouTube](https://www.youtube.com/watch?v=JoTat4bXGR0), uploaded by the builder on 2026-10-17 ([`docs/runbooks/release.md`](../../docs/runbooks/release.md), step 4) |
 | File | `evidence/demo/dustin-demo-first-sow.mp4` on the machine that made it; ignored by git (`.gitignore`), 15,716,048 bytes. The silent cut the take produced, `evidence/demo/dustin-demo-60s.mp4` (SHA-256 `25e5ae082283d19c82c47f7e6e9104e7036298301ca50bb7452d452c69c1c7cd`), is its picture |
 | Duration | 0:59.8 (59.80 s) |
 | Format | 1920 x 1080, H.264, 30 frames per second, with the builder's voice-over; the captions make it readable with the sound off |
