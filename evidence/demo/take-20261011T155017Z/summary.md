@@ -36,7 +36,7 @@ Checked by the script before it wrote anything: each transaction succeeded with 
 
 | Field | Value |
 |---|---|
-| File | The silent cut, `evidence/demo/dustin-demo-60s.mp4` (not in git). The hosted file is this cut with the builder's voice-over added on 2026-10-14 ([`docs/demo-voice-over.md`](../../../docs/demo-voice-over.md)): [dustin-demo-first-sow.mp4](https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4) on the `v0.1.0` release (2026-10-15), 15,716,048 bytes, SHA-256 `ab704f3d01b99e9f1465716467564da4dfd90f8eb0a908c48c83e1145ece4656`; the picture is unchanged |
+| File | The silent cut, `evidence/demo/dustin-demo-60s.mp4` (not in git). The hosted file is this cut with the builder's voice-over added on 2026-10-14 ([`docs/demo-voice-over.md`](../../../docs/demo-voice-over.md)): [dustin-demo-first-sow.mp4](https://github.com/mkaya13/dustin/releases/download/v0.1.0/dustin-demo-first-sow.mp4) on the `v0.1.0` release (2026-10-15), 15,716,048 bytes, SHA-256 `ab704f3d01b99e9f1465716467564da4dfd90f8eb0a908c48c83e1145ece4656`; the picture is unchanged. The same file is on [YouTube](https://www.youtube.com/watch?v=JoTat4bXGR0) since 2026-10-17; the release asset stays the reference copy, since the hash above describes its bytes |
 | Duration | 59.80 s |
 | Size | 1920 x 1080, H.264, 30 frames per second, no sound |
 | SHA-256 | `25e5ae082283d19c82c47f7e6e9104e7036298301ca50bb7452d452c69c1c7cd` |
