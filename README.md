@@ -1,6 +1,8 @@
 # Dustin
 
-[![CI](https://github.com/mkaya13/dustin/actions/workflows/ci.yml/badge.svg)](https://github.com/mkaya13/dustin/actions/workflows/ci.yml) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![Network: testnet only](https://img.shields.io/badge/network-testnet%20only-orange.svg)
+[![CI](https://github.com/mkaya13/dustin/actions/workflows/ci.yml/badge.svg)](https://github.com/mkaya13/dustin/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/%40mkaya13%2Fstellar-dustin.svg)](https://www.npmjs.com/package/@mkaya13/stellar-dustin) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![Network: testnet only](https://img.shields.io/badge/network-testnet%20only-orange.svg)
+
+**Links:** [npm package](https://www.npmjs.com/package/@mkaya13/stellar-dustin) · [Web demo](https://dustin-pebk.onrender.com/) (plan only, in the browser) · [Demo video](https://www.youtube.com/watch?v=JoTat4bXGR0) (60 s, YouTube) · [Releases](https://github.com/mkaya13/dustin/releases) · [X](https://x.com/dustin_stellar) · [Issues](https://github.com/mkaya13/dustin/issues)
 
 Dustin closes messy Stellar testnet accounts: it cancels offers, disposes of leftover balances, removes trustlines and data entries, and merges the account into a destination you choose. Every transaction is fee-bumped by a sponsor, so an account holding zero spendable XLM, which cannot pay for its own teardown, can still be closed. `planClose()` shows the whole ordered plan before anything is signed, so a wallet can offer account closure without sending its users to a web form.
 
@@ -291,6 +293,18 @@ The deliverable tracker of SOW Appendix A, with its evidence links, is in the [e
 - [CHANGELOG](CHANGELOG.md), [CONTRIBUTING](CONTRIBUTING.md) and [SECURITY](SECURITY.md).
 - [Statement of Work](SUCCESSFUL_SOW.md): scope, success metric and evidence plan.
 - [Planning documents and canonical decisions](docs/README.md).
+
+### Where to find Dustin
+
+| | |
+|---|---|
+| Source and issues | https://github.com/mkaya13/dustin |
+| Releases (the demo video is an asset of `v0.1.0`) | https://github.com/mkaya13/dustin/releases |
+| npm package | https://www.npmjs.com/package/@mkaya13/stellar-dustin |
+| Web demo, plan only, in the browser | https://dustin-pebk.onrender.com/ |
+| Demo video, 60 seconds | https://www.youtube.com/watch?v=JoTat4bXGR0 |
+| X | https://x.com/dustin_stellar |
+| Security reports | [SECURITY.md](SECURITY.md) (GitHub's private vulnerability reporting) |
 
 ## License
 
