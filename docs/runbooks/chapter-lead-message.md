@@ -1,6 +1,6 @@
 # Message to the chapter lead: the completion of the SOW, with the two-fixture reading of week 3
 
-For the builder to send, once the pre-send steps below are done. One message does two things: it submits the evidence of completion (SOW section 6) for the chapter lead's verification checklist (SOW 6.2), and it asks for the written confirmation of how the SOW's week-3 wording is read (canonical decision 3 in [`docs/README.md`](../README.md)); the evidence package lists that confirmation as pending ([`evidence/README.md`](../../evidence/README.md#pending-the-builders-actions)). Send one of the two versions below, in the language you use with the chapter lead, from your usual channel. Every slot is filled; the links are to the public repository and need no login.
+For the builder to send, once the pre-send steps below are done. It submits the evidence of completion (SOW section 6) for the chapter lead's verification checklist (SOW 6.2) and explains, as a statement, how the SOW's week-3 wording was met on two accounts (canonical decision 3 in [`docs/README.md`](../README.md)); the message is sent on 2026-10-17 for the chapter lead's approval of the whole submission, and that approval, once it comes in writing, is the acknowledgement the evidence package lists as pending ([`evidence/README.md`](../../evidence/README.md#pending-the-builders-actions)). Send one of the two versions below, in the language you use with the chapter lead, from your usual channel. Every slot is filled; the links are to the public repository and need no login.
 
 After the reply: keep the reply itself off the repository (it names a person), and tell the agent the date. The agent then replaces `<pending: chapter lead's acknowledgement>` in `evidence/README.md` and `evidence/completion-report.md` with "acknowledged in writing on <date>; the reply is held off-repository", as the SOW copy does for the signed original, and fills the report's date.
 
@@ -14,7 +14,7 @@ After the reply: keep the reply itself off the repository (it names a person), a
 
 ## English
 
-> Subject: Dustin (Instaward): the evidence of completion, and one wording to confirm
+> Subject: Dustin (Instaward): the evidence of completion
 >
 > Hello,
 >
@@ -34,14 +34,18 @@ After the reply: keep the reply itself off the repository (it names a person), a
 >
 > **The binary success metric (Appendix B)** is met on the committed evidence, row by row, with the files that prove each row: <https://github.com/mkaya13/dustin/blob/main/evidence/README.md#sow-appendix-b-row-by-row>.
 >
-> **One wording that needs your written confirmation.** Week 3 of the SOW expects "the messy fixture closed" and, on the same fixture, the deliberately illiquid asset "exiting through the unclosable path with a stated reason". Both cannot happen on one account: a balance that cannot be disposed of keeps its trustline, and a trustline blocks the account merge, so an account holding it can never be closed. I therefore used two fixtures, built from the same code:
+> **How the week-3 milestone was met, on two accounts.** The SOW's expected output for week 3 says two things about the same test account: that "the messy fixture is closed", and that a deliberately illiquid asset on it "exits through the unclosable path with a stated reason". In plain terms: the account must end up deleted, and at the same time it must hold an asset that cannot be got rid of, which Dustin must refuse with an explanation. These two cannot both be true of one account, for a reason that comes from Stellar itself, not from Dustin:
 >
-> 1. **`messy`, the success-metric account.** 4 trustlines with dust (1 of them sponsored by a separate reserve sponsor), 2 open offers, 1 data entry, and zero spendable XLM (balance exactly at the minimum reserve). Every balance can be disposed of, and Dustin closes it fully, with every fee paid by a sponsor; this is the account that Appendix B is checked on (the link in row 2 above).
-> 2. **`edge`, the unclosable case.** A separate account whose asset is frozen by its issuer and has no market. Dustin stops before signing anything and names the reason (`TRUSTLINE_NOT_AUTHORIZED`, with the issuer and a remedy); with `--partial` it cleans up everything else and leaves that balance, and the receipt lists it as not closed: <https://github.com/mkaya13/dustin/blob/main/evidence/runs/20260928T125414Z-edge-frozen/summary.md>.
+> - To delete a Stellar account it must first be emptied: every asset balance must be gone and every trustline (the account's permission to hold an asset) removed. Stellar refuses to merge an account that still has a trustline.
+> - A trustline can be removed only when its balance is zero. A balance that cannot be sold, sent back to its issuer or transferred anywhere keeps its trustline open.
+> - So an account that holds an asset nobody can take off it can never be deleted. Whichever account carries the "unclosable" asset stays open by definition.
 >
-> "0 XLM" is read as zero spendable XLM. A literal 0.0000000 XLM account (fully sponsored) was also closed, as an extra test.
+> I therefore split the milestone across two test accounts, built by the same fixture command, so that each half of the sentence is demonstrated where it can be:
 >
-> Could you reply to confirm that this two-fixture reading meets the week-3 expected output and the binary success metric? A one-line reply is enough. If you read it differently, tell me what you need and I will adjust before the final deadline (2026-10-22).
+> 1. **`messy`, the account the success metric is checked on.** It holds 4 trustlines with dust (tiny leftover balances; 1 of the trustlines is sponsored, meaning another account paid its reserve), 2 open offers, 1 data entry, and zero spendable XLM: the account holds XLM, but all of it is locked as the minimum reserve, so it cannot pay even one transaction fee on its own. Every balance on it can be disposed of, so Dustin closes it fully: it cancels the offers, sells or returns the dust, removes the trustlines and the data entry, and merges the account away, with every fee paid by the sponsor. Afterwards the account no longer exists. This is the account every box of Appendix B is ticked on (the link in row 2 above).
+> 2. **`edge`, the unclosable case.** A separate account holding an asset that its issuer has frozen and that has no buyers. Dustin reads the account, finds that the balance cannot be moved by any route, and stops before signing anything, printing the reason (`TRUSTLINE_NOT_AUTHORIZED`), the issuer's address and what would unblock it. With `--partial` it cleans up everything else on that account and leaves only that balance, and the receipt lists it as not closed: <https://github.com/mkaya13/dustin/blob/main/evidence/runs/20260928T125414Z-edge-frozen/summary.md>.
+>
+> Two further readings follow the same logic. "0 XLM" is read as zero spendable XLM, because an account with literally no XLM can only exist on Stellar when someone else sponsors its reserve; one such fully sponsored 0.0000000 XLM account was closed too, as an extra test. And "the same fixture" is read as the same fixture recipe: both accounts come from one command, `dustin fixture create`, with the profile `messy` or `edge`. Together, the two accounts meet the week-3 expected output and the binary success metric: the messy fixture is closed, and the illiquid asset exits through the unclosable path with its reason stated.
 >
 > **Outside the SOW, for convenience:** a plan-only web page, so that you can see what the planner says about an account without a terminal: <https://dustin-pebk.onrender.com/>. Paste any testnet account (the example button fills the fixture account) and press Plan. It only plans: it never asks for a secret key and signs nothing. It is not part of the deliverables.
 >
@@ -54,7 +58,7 @@ After the reply: keep the reply itself off the repository (it names a person), a
 
 ## Türkçe
 
-> Konu: Dustin (Instaward): tamamlama kanıtları ve onayınızı istediğim bir ifade
+> Konu: Dustin (Instaward): tamamlama kanıtları
 >
 > Merhaba,
 >
@@ -74,14 +78,18 @@ After the reply: keep the reply itself off the repository (it names a person), a
 >
 > **İkili başarı ölçütü (Ek B)**, depoya işlenmiş kanıtlar üzerinde satır satır karşılanıyor; her satırı kanıtlayan dosyalar şurada: <https://github.com/mkaya13/dustin/blob/main/evidence/README.md#sow-appendix-b-row-by-row>.
 >
-> **Yazılı onayınıza ihtiyaç duyduğum bir ifade.** SOW'un 3. haftası hem "messy fixture'ın kapatılmasını" hem de aynı fixture üzerinde, bilerek likiditesiz bırakılmış varlığın "gerekçesi belirtilerek kapatılamaz yoldan çıkmasını" bekliyor. İkisi aynı hesapta birlikte olamaz: elden çıkarılamayan bir bakiye trustline'ını tutar, trustline da hesap birleştirmeyi (merge) engeller; böyle bir bakiyeyi taşıyan hesap hiçbir zaman kapatılamaz. Bu yüzden aynı kodla kurulan iki fixture kullandım:
+> **3. hafta kilometre taşı nasıl karşılandı: iki hesapla.** SOW'un 3. hafta için beklenen çıktısı aynı test hesabı hakkında iki şey söylüyor: "messy fixture kapatılır" ve üzerindeki, bilerek likiditesiz bırakılmış varlık "gerekçesi belirtilerek kapatılamaz yoldan çıkar". Düz bir dille: hesap sonunda silinmiş olmalı ve aynı zamanda elden çıkarılamayan bir varlık taşımalı; Dustin de bunu bir açıklamayla reddetmeli. Bu ikisi aynı hesap için birlikte doğru olamaz; sebebi Dustin'den değil, Stellar'ın kendisinden geliyor:
 >
-> 1. **`messy`, başarı ölçütünün hesabı.** Toz bakiyeli 4 trustline (1'i ayrı bir rezerv sponsoru tarafından sponsorlu), 2 açık teklif, 1 data girdisi ve harcanabilir XLM'i sıfır (bakiye tam minimum rezervde). Her bakiye elden çıkarılabiliyor ve Dustin hesabı, bütün ücretleri bir sponsor ödeyerek tamamen kapatıyor; Ek B bu hesap üzerinde kontrol ediliyor (yukarıda 2. satırdaki link).
-> 2. **`edge`, kapatılamaz durum.** Varlığı ihraççısı tarafından dondurulmuş ve piyasası olmayan ayrı bir hesap. Dustin hiçbir şey imzalamadan durur ve gerekçeyi yazar (`TRUSTLINE_NOT_AUTHORIZED`, ihraççı ve çözüm önerisiyle); `--partial` ile geri kalan her şeyi temizler, o bakiyeyi bırakır ve makbuz onu kapatılmamış olarak listeler: <https://github.com/mkaya13/dustin/blob/main/evidence/runs/20260928T125414Z-edge-frozen/summary.md>.
+> - Bir Stellar hesabını silmek için önce boşaltmak gerekir: her varlık bakiyesi sıfırlanmalı ve her trustline (hesabın bir varlığı tutma izni) kaldırılmalı. Stellar, üzerinde hâlâ trustline olan bir hesabı birleştirmeyi (merge) reddeder.
+> - Bir trustline ancak bakiyesi sıfırken kaldırılabilir. Satılamayan, ihraççısına geri gönderilemeyen ya da başka yere aktarılamayan bir bakiye trustline'ını açık tutar.
+> - Dolayısıyla kimsenin üzerinden alamayacağı bir varlık taşıyan hesap hiçbir zaman silinemez. "Kapatılamaz" varlığı hangi hesap taşıyorsa o hesap tanım gereği açık kalır.
 >
-> "0 XLM" harcanabilir XLM'in sıfır olması olarak okundu. Ek bir test olarak, tamamen sponsorlu ve bakiyesi gerçekten 0.0000000 XLM olan bir hesap da kapatıldı.
+> Bu yüzden kilometre taşını, aynı fixture komutuyla kurulan iki test hesabına böldüm; böylece cümlenin her yarısı gösterilebileceği yerde gösteriliyor:
 >
-> Bu iki fixture yorumunun 3. haftanın beklenen çıktısını ve ikili başarı ölçütünü karşıladığını yanıtla onaylayabilir misiniz? Tek satırlık bir yanıt yeterli. Farklı okuyorsanız neye ihtiyacınız olduğunu yazın; son teslim tarihinden (2026-10-22) önce düzeltirim.
+> 1. **`messy`, başarı ölçütünün üzerinde kontrol edildiği hesap.** Toz bakiyeli (çok küçük artık bakiyeler) 4 trustline (bunlardan 1'i sponsorlu, yani rezervini başka bir hesap ödemiş), 2 açık teklif, 1 data girdisi ve harcanabilir XLM'i sıfır: hesapta XLM var ama tamamı minimum rezerv olarak kilitli, dolayısıyla tek bir işlem ücretini bile kendi başına ödeyemiyor. Üzerindeki her bakiye elden çıkarılabiliyor; bu yüzden Dustin hesabı tamamen kapatıyor: teklifleri iptal ediyor, tozu satıyor ya da iade ediyor, trustline'ları ve data girdisini kaldırıyor ve hesabı birleştiriyor; her ücreti sponsor ödüyor. Sonrasında hesap artık yok. Ek B'nin her kutusu bu hesap üzerinde işaretleniyor (yukarıda 2. satırdaki link).
+> 2. **`edge`, kapatılamaz durum.** İhraççısının dondurduğu ve alıcısı olmayan bir varlık taşıyan ayrı bir hesap. Dustin hesabı okuyor, bakiyenin hiçbir yoldan taşınamayacağını görüyor ve hiçbir şey imzalamadan duruyor; gerekçeyi (`TRUSTLINE_NOT_AUTHORIZED`), ihraççının adresini ve neyin önünü açacağını yazıyor. `--partial` ile o hesaptaki geri kalan her şeyi temizliyor, yalnızca o bakiyeyi bırakıyor ve makbuz onu kapatılmamış olarak listeliyor: <https://github.com/mkaya13/dustin/blob/main/evidence/runs/20260928T125414Z-edge-frozen/summary.md>.
+>
+> İki okuma daha aynı mantığı izliyor. "0 XLM", harcanabilir XLM'in sıfır olması olarak okundu; çünkü Stellar'da hiç XLM'i olmayan bir hesap ancak rezervini başkası sponsorladığında var olabilir; böyle tamamen sponsorlu, bakiyesi 0.0000000 XLM olan bir hesap da ek test olarak kapatıldı. "Aynı fixture" ise aynı fixture tarifi olarak okundu: iki hesap da tek bir komuttan, `messy` ya da `edge` profiliyle `dustin fixture create`'ten geliyor. İki hesap birlikte 3. haftanın beklenen çıktısını ve ikili başarı ölçütünü karşılıyor: messy fixture kapatıldı, likiditesiz varlık ise gerekçesi belirtilerek kapatılamaz yoldan çıktı.
 >
 > **SOW kapsamı dışında, kolaylık olsun diye:** terminal olmadan planlayıcının bir hesap için ne söylediğini görebileceğiniz, yalnızca plan çıkaran bir web sayfası: <https://dustin-pebk.onrender.com/>. Herhangi bir testnet hesabını yapıştırın (örnek düğmesi fixture hesabını doldurur) ve Plan'a basın. Sayfa yalnızca planlar: hiçbir zaman gizli anahtar istemez ve hiçbir şey imzalamaz. Teslimatların parçası değildir.
 >
